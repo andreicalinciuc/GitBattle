@@ -1,13 +1,13 @@
 import React from "react";
 import languages from "../../languages";
 import { Tab, Tabs } from "@material-ui/core";
-import './popular.css'
+import "./popular.css";
 export default class SelectedLanguage extends React.Component {
   render() {
     const { click } = this.props;
     return (
       <Tabs>
-        {languages.map((lang,key) => {
+        {languages.map((lang, key) => {
           return (
             <Tab
               label={lang.label}
@@ -16,8 +16,7 @@ export default class SelectedLanguage extends React.Component {
               activeKey={key}
               onClick={() => click(lang.value)}
               onSelect={() => click(lang.value)}
-              className='tab-selected'
-              
+              className="tab-selected"
             />
           );
         })}

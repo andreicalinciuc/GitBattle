@@ -3,7 +3,7 @@ import SelectLanguage from "../components/Popular/selectPopular";
 import { BoxLoading } from "react-loadingg";
 import PopularListRender from "../components/Popular/popularListItem";
 import api from "../utility/api";
-import "../components/Popular/popular.css"
+import "../components/Popular/popular.css";
 class Popular extends PureComponent {
   constructor(props) {
     super(props);
@@ -35,22 +35,24 @@ class Popular extends PureComponent {
     return (
       <div>
         <SelectLanguage click={this.activeLabel}></SelectLanguage>
-        
-          <div className='page-color'>
-            <div className="popular-container">
-            {this.state.isLoading === true ? 
-            this.state.data.map((item, key) => {
-              return (
-                <PopularListRender
-                  popularItem={item}
-                  key={key}
-                  index = {key+1}
-                ></PopularListRender>
-              );
-            }): 
-            <BoxLoading />}
+
+        <div className="page-color">
+          <div className="popular-container">
+            {this.state.isLoading === true ? (
+              this.state.data.map((item, key) => {
+                return (
+                  <PopularListRender
+                    popularItem={item}
+                    key={key}
+                    index={key + 1}
+                  ></PopularListRender>
+                );
+              })
+            ) : (
+              <BoxLoading />
+            )}
           </div>
-          </div>
+        </div>
       </div>
     );
   }
