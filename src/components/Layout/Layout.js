@@ -6,31 +6,27 @@ import Battle from "../../pages/battle";
 import Group from "../../pages/group";
 import Popular from "../../pages/popular";
 import "./Layout.css";
-
+import { Tabs, Tab } from "@material-ui/core";
 class Layout extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div className="layout">
         <div className="main">
           <Router>
-            <div className="navigation">
+            <Tabs>
               <Link to="/" className="navigationLink">
-                Home
+                <Tab label="Home" />
               </Link>
               <Link to="/battle" className="navigationLink">
-                Battle
+                <Tab label="Battle" />
               </Link>
               <Link to="/group" className="navigationLink">
-                Group
+                <Tab label="Group" />
               </Link>
               <Link to="/popular" className="navigationLink">
-                Pupular
+                <Tab label="Popular" />
               </Link>
-            </div>
+            </Tabs>
             <div className="content">
               <Switch>
                 <Route exact path="/">

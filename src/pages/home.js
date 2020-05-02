@@ -1,14 +1,38 @@
-import React from 'react';
+import React from "react";
 
-class Home extends React.Component{
+class Home extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { date: new Date() };
+  }
 
-    render(){
-        console.log("render din home");
-        return(<div>
+  componentDidMount() {
+    console.log("render din comonentDidMount home");
 
-            <p>Acesta este un exercitiu de test pe home page</p>
-        </div>);
-    }
+    this.timerID = setInterval(() => this.tick(), 1000);
+  }
+
+  tick() {
+    this.setState({
+      date: new Date(),
+    });
+  }
+
+  componentWillUnmount(){
+      console.log('am iesit')
+      clearInterval(this.timerID);
+  }
+
+
+
+  render() {
+    return (
+      <div>
+        <p>Acesta este un exercitiu de test pe home page</p>
+        <p>{this.state.date.toLocaleTimeString()}</p>
+      </div>
+    );
+  }
 }
 
 export default Home;

@@ -3,10 +3,10 @@
   height: 100vh;
   width: 100vw;
   position: relative;
+  overflow-x: hidden;
 }
 
 .main {
-  flex: 1 0 auto;
   display: flex;
   flex-direction: column;
 
@@ -20,16 +20,13 @@
     align-items: center;
 }
 
-.navigationLink{
-  width: 100px;
-  background-color: grey;
-text-align: center;
-padding: 10px 0 10px;
+.navigationLink {
+color: black;
 text-decoration: none !important;
 }
 
-.navigationLink:hover{
-  text-decoration:none;
-  cursor:pointer;
+.page-color{
+  background-color: rgb(19, 17, 17);
 }
+
 
