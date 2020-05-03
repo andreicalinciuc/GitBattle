@@ -23,35 +23,35 @@ class Popular extends PureComponent {
   activeLabel = async (lang) => {
     this.setState({
       language: lang,
-      isLoading: false,
+      isLoading: false, 
     });
 
     const response = await api.fetchRepo(lang);
-
     this.setState({ isLoading: true, data: response });
   };
 
   render() {
     return (
       <div>
-        <SelectLanguage click={this.activeLabel}></SelectLanguage>
+        <SelectLanguage
+          click={this.activeLabel}
+          selectItem={this.state.language.toLowerCase()}
+        ></SelectLanguage>
 
-        <div className="page-color">
-          <div className="popular-container">
-            {this.state.isLoading === true ? (
-              this.state.data.map((item, key) => {
-                return (
-                  <PopularListRender
-                    popularItem={item}
-                    key={key}
-                    index={key + 1}
-                  ></PopularListRender>
-                );
-              })
-            ) : (
-              <BoxLoading />
-            )}
-          </div>
+        <div className="popular-container">
+          {this.state.isLoading === true ? (
+            this.state.data.map((item, key) => {
+              return (
+                <PopularListRender
+                  popularItem={item}
+                  key={key}
+                  index={key + 1}
+                ></PopularListRender>
+              );
+            })
+          ) : (
+            <BoxLoading />
+          )}
         </div>
       </div>
     );

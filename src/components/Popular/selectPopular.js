@@ -1,5 +1,5 @@
 import React from "react";
-import languages from "../../languages";
+import languages from "../../utility/constants";
 import { Tab, Tabs } from "@material-ui/core";
 import "./popular.css";
 export default class SelectedLanguage extends React.Component {
@@ -7,19 +7,21 @@ export default class SelectedLanguage extends React.Component {
     const { click } = this.props;
     return (
       <Tabs>
-        {languages.map((lang, key) => {
-          return (
-            <Tab
-              label={lang.label}
-              value={lang.value}
-              key={lang.label}
-              activeKey={key}
-              onClick={() => click(lang.value)}
-              onSelect={() => click(lang.value)}
-              className="tab-selected"
-            />
-          );
-        })}
+        <div className="navigationLink">
+          {languages.map((lang, key) => {
+            return (
+              <Tab
+                label={lang.label}
+                value={lang.value}
+                key={lang.label}
+                onClick={() => click(lang.value)}
+                onSelect={lang.value}
+                className={this.props.selectItem == lang.value?"selectedItem":null}
+                
+              />
+            );
+          })}
+        </div>
       </Tabs>
     );
   }

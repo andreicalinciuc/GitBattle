@@ -1,0 +1,27 @@
+.home-description{
+    color: white;
+    font-weight: 700;
+    font-size: 35px;
+}
+
+.home-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    height: 100%;
+}
+.content{
+    height: 100%;
+}
+
+.not-ready-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    height: 100%;
+    width: 100%;
+}

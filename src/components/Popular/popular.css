@@ -5,22 +5,35 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  opacity: 0.9;
 }
 .popular-item {
   color: whitesmoke;
   border: 1px solid white;
   border-radius: 5%;
-  width: 200px;
+  min-width: 250px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   margin-top: 15px;
   padding: 5px 0 5px;
-  background-color: rgb(27, 27, 27);
+  background-color: rgb(34, 33, 33);
   align-content: center;
 }
 
-.tab-selected {
-  background: red;
+.selectedItem{
+border-bottom: 2px solid red !important;
+font-weight: 600;
+transform: scale(1.05);
+color: rgb(255, 255, 255) !important;
+}
+
+.popular-item a {
+  text-decoration:none; 
+  color: rgb(149, 165, 149);
+  font-weight: 600;
+}
+.popular-item:hover{
+  transform: scale(1.02);
 }

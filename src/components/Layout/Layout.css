@@ -4,11 +4,15 @@
   width: 100vw;
   position: relative;
   overflow-x: hidden;
+  background-color: rgb(19, 17, 17);
+
 }
 
 .main {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  
 }
 .navigation {
   width: 100%;
@@ -24,6 +28,12 @@
   text-decoration: none !important;
 }
 
-.page-color {
-  background-color: rgb(19, 17, 17);
+.navigationLink button{
+  border: 1px  grey solid;
+  margin: 5px 3px 5px;
+  color:rgb(240, 233, 233);
+
+}
+.navigationLink button:hover{
+  transform: scale(1.05);
 }
