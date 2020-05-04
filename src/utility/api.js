@@ -1,10 +1,19 @@
-
+function fetchUser(username) {
+  return fetch("https://api.github.com/users/" + username).then((response) =>
+    response.json()
+  );
+}
 
 export default {
-  battle: function (username){
-    return fetch('https://api.github.com/users/' + username )
-    .then((response) => response.json())
-    .then((data) =>  data);
+  battle: async function (users) {
+    return Promise.all(
+      users.map(async (user) => {
+        return await fetchUser(user.value);
+      })
+    );
+  },
+  fetchUser: (user) => {
+    return fetchUser(user);
   },
 
   fetchRepo: function (language) {

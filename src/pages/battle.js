@@ -1,11 +1,15 @@
 import React from "react";
 import SearchUser from "../components/Battle/selectUser";
+import { Tab, Tabs } from "@material-ui/core";
+import api from "../utility/api";
+import BattleResult from "../components/Battle/battleListItem";
 class Battle extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       dynamicFormSerial: [("", 1), ("", 2)],
       dynamicFormData: [],
+      dyanicDataFromFetch: null,
     };
   }
 
@@ -17,14 +21,15 @@ class Battle extends React.Component {
     this.setState({ dynamicFormSerial: tempDynamicSerial });
   };
   onRemoveFormButtonClick = () => {
-    const { dynamicFormSerial } = this.state;
+    const { dynamicFormSerial, dynamicFormData } = this.state;
     let tempDynamicSerial = dynamicFormSerial;
-    let lastFormSerial = tempDynamicSerial.length - 1;
-    tempDynamicSerial.splice(
-      tempDynamicSerial.indexOf(dynamicFormSerial.length),
-      1
-    );
-    this.setState({ dynamicFormSerial: tempDynamicSerial });
+    let tempDynamicData = dynamicFormData;
+    tempDynamicSerial.pop();
+    tempDynamicData.pop();
+    this.setState({
+      dynamicFormSerial: tempDynamicSerial,
+      dynamicFormData: tempDynamicData,
+    });
   };
 
   onChangeComponentData = (data) => {
@@ -44,8 +49,6 @@ class Battle extends React.Component {
     tempDynamicComponentData.push(data);
     this.setState({ dynamicFormData: tempDynamicComponentData });
   };
-
-  
 
   removeFormButtonClick = (removeFormSerial) => {
     const { dynamicFormSerial, dynamicFormData } = this.state;
@@ -71,51 +74,59 @@ class Battle extends React.Component {
     });
   };
 
-  onSaveComponentData = (data) => {
+  onSaveComponentData = async (data) => {
     const { dynamicFormData } = this.state;
+    var response = await api.battle(dynamicFormData);
     this.setState({
       saveComponentData: dynamicFormData,
+      dyanicDataFromFetch: response,
       dynamicComponentData: [],
       dynamicFormSerial: [],
     });
-    console.log(this.state.dynamicFormData);
   };
+  
+  reset =  () => {
+    this.setState({
+      dynamicFormSerial: [("", 1), ("", 2)],
+      dynamicFormData: [],
+      dyanicDataFromFetch: null,
+    });
+  };
+
 
   render() {
     return (
       <div>
-        <div>
-          <p>Find your firends</p>
-          <div className={"add-form-button"}>
-            <button onClick={this.onAddFormButtonClick} type="submit">
-              +
-            </button>
-            <button onClick={this.onRemoveFormButtonClick} type="submit">
-              -
-            </button>
-          </div>
+        <div className="battle-controller">
+          <p>Find your fighters</p>
+          {this.state.dyanicDataFromFetch == null? <Tabs>
+            <Tab onClick={this.onAddFormButtonClick} label="+" />
+
+            <Tab onClick={this.onRemoveFormButtonClick} label="-" />
+          </Tabs>:<Tab onClick={() => this.reset()} label="Reset" />}
+         
+          <Tab onClick={() => this.onSaveComponentData()} label="Battle" />
         </div>
-        <button type="button" onClick={() => this.onSaveComponentData()}>
-          Battle
-        </button>
+
         <div className="users-search-section">
-          {this.state.dynamicFormSerial.length >= 1 &&
-            this.state.dynamicFormSerial.map((item, index) => {
-              return (
-                <SearchUser
-                  key={item}
-                  {...this.props}
-                  formSerial={item}
-                  removeFormButtonClick={this.removeFormButtonClick}
-                  onChangeComponentData={this.onChangeComponentData}
-                  removeFormButtonClick={this.removeFormButtonClick}
-                  fetchUser={this.fetchUser}
-                />
-              );
-            })}
-        </div>
-        <div className="list-users">
-          {console.log(this.state.dynamicFormFetch)}
+          {this.state.dyanicDataFromFetch != null
+            ? this.state.dyanicDataFromFetch.map((item) => {
+                return <BattleResult user={item} key={item.id} />;
+              })
+            : this.state.dynamicFormSerial.length >= 1 &&
+              this.state.dynamicFormSerial.map((item) => {
+                return (
+                  <SearchUser
+                    key={item}
+                    {...this.props}
+                    formSerial={item}
+                    removeFormButtonClick={this.removeFormButtonClick}
+                    onChangeComponentData={this.onChangeComponentData}
+                    removeFormButtonClick={this.removeFormButtonClick}
+                    fetchUser={this.fetchUser}
+                  />
+                );
+              })}
         </div>
       </div>
     );
