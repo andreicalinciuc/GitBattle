@@ -13,7 +13,7 @@ export default class SelectedLanguage extends React.Component {
               <Tab
                 label={lang.label}
                 value={lang.value}
-                key={lang.label}
+                key={key}
                 onClick={() => click(lang.value)}
                 onSelect={lang.value}
                 className={this.props.selectItem == lang.value?"selectedItem":null}

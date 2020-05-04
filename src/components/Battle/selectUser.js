@@ -53,6 +53,7 @@ export default class SearchUser extends PureComponent {
           <CircularProgress />
         )}
         <Input
+        key="3"
           onChange={(e) => {
             inputData = {
               formSerial: formSerial,
@@ -66,13 +67,14 @@ export default class SearchUser extends PureComponent {
         />
         <Tabs>
           {this.state.repo == null ? (
-            <Tab onClick={() => this.fetchUser(inputData)} label="Submit" />
+            <Tab onClick={() => this.fetchUser(inputData)} label="Submit" key="0" />
           ) : (
-            <Tab onClick={() => this.resetUser()} label="Reset" />
+            <Tab onClick={() => this.resetUser()} label="Reset" key="1" />
           )}
           <Tab
             onClick={() => removeFormButtonClick(formSerial)}
             label="Remove"
+            key="2"
           />
         </Tabs>
       </div>
