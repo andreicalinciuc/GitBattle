@@ -6,7 +6,7 @@ export default class SelectedLanguage extends React.Component {
   render() {
     const { click } = this.props;
     return (
-      <Tabs>
+      <Tabs value ={false}>
         <div className="navigationLink">
           {languages.map((lang, key) => {
             return (
@@ -15,9 +15,7 @@ export default class SelectedLanguage extends React.Component {
                 value={lang.value}
                 key={key}
                 onClick={() => click(lang.value)}
-                onSelect={lang.value}
                 className={this.props.selectItem == lang.value?"selectedItem":null}
-                
               />
             );
           })}

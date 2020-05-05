@@ -22,7 +22,7 @@ class BattleResult extends PureComponent {
           <div className="user-find">
             <img src={user.avatar_url} width="80px"></img>
             <p>@{user.login}</p>
-            <p>Public repos:{user.public_repos}</p>
+            <p>Public repos: {user.public_repos}</p>
             <p>Followers: {user.followers}</p>
             <p>Following: {user.following}</p>
             <p>Days:{days_between(new Date(user.created_at), new Date())}</p>

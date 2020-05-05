@@ -19,7 +19,7 @@ class Home extends React.Component {
         <p className="home-description">Are you ready to fight?</p>
 
         <div>
-          <Tabs>
+          <Tabs value={false}>
             <Link to="/battle" className="navigationLink">
               <Tab label="Yes" onClick={() => click()} />
             </Link>

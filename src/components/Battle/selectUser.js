@@ -26,6 +26,8 @@ class SearchUser extends PureComponent {
         repo: respone,
         isLoading: true,
       });
+
+      this.props.submitUser(respone);
     }
   };
   resetUser = () => {
@@ -76,7 +78,7 @@ class SearchUser extends PureComponent {
           placeholder={`User ${formSerial}`}
           type="text"
         />
-        <Tabs>
+        <Tabs value={false}>
           {this.state.repo == null ? (
             <Tab
               onClick={() => this.fetchUser(this.state.inputData.value)}
@@ -111,8 +113,9 @@ const mapDispatchToProps = (dispatch) => {
     removeFormButtonClick: (formSerial) => {
       dispatch({ type: "REMOVE_FORM_CLICK", removeFormSerial: formSerial });
     },
-    resetUser: (formSerial) => {
-      dispatch({ type: "REMOVE_USER", removeFormSerial: formSerial });
+
+    submitUser: (user) => {
+      dispatch({ type: "SUBMIT_FETCH_USER", user: user });
     },
   };
 };

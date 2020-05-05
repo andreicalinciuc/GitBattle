@@ -12,13 +12,13 @@ class Battle extends React.Component {
   componentDidUpdate(prevProps) {}
 
   render() {
-    console.log("rerender");
     return (
       <div>
         <div className="battle-controller">
           <p>Find your fighters</p>
-          {this.props.dyanicDataFromFetch == null ? (
-            <Tabs>
+          {this.props.dyanicDataFromFetch.length !==
+          this.props.dynamicFormSerial.length ? (
+            <Tabs value={false}>
               <Tab onClick={this.props.onAddFormButtonClick} label="+" />
 
               <Tab
@@ -28,7 +28,7 @@ class Battle extends React.Component {
               />
             </Tabs>
           ) : (
-            <Tab onClick={() => this.props.reset} label="Reset" />
+            <Tab onClick={() => this.props.reset()} label="Reset" />
           )}
 
           <Tab
@@ -38,7 +38,8 @@ class Battle extends React.Component {
         </div>
 
         <div className="users-search-section">
-          {this.props.dyanicDataFromFetch != null
+          {this.props.dyanicDataFromFetch.length ===
+          this.props.dynamicFormSerial.length
             ? this.props.dyanicDataFromFetch.map((item) => {
                 return <BattleResult user={item} key={item.id} />;
               })
