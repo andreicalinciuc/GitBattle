@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/GitBattle/static/css/main.426ff2ac.chunk.css",
+    "main.js": "/GitBattle/static/js/main.09bbec60.chunk.js",
+    "main.js.map": "/GitBattle/static/js/main.09bbec60.chunk.js.map",
+    "runtime-main.js": "/GitBattle/static/js/runtime-main.f9696880.js",
+    "runtime-main.js.map": "/GitBattle/static/js/runtime-main.f9696880.js.map",
+    "static/js/2.6a953ef4.chunk.js": "/GitBattle/static/js/2.6a953ef4.chunk.js",
+    "static/js/2.6a953ef4.chunk.js.map": "/GitBattle/static/js/2.6a953ef4.chunk.js.map",
+    "index.html": "/GitBattle/index.html",
+    "precache-manifest.e0903084f44d0972bcade3307e83c324.js": "/GitBattle/precache-manifest.e0903084f44d0972bcade3307e83c324.js",
+    "service-worker.js": "/GitBattle/service-worker.js",
+    "static/css/main.426ff2ac.chunk.css.map": "/GitBattle/static/css/main.426ff2ac.chunk.css.map",
+    "static/js/2.6a953ef4.chunk.js.LICENSE.txt": "/GitBattle/static/js/2.6a953ef4.chunk.js.LICENSE.txt",
+    "static/media/gitBattle.png": "/GitBattle/static/media/gitBattle.60dfa264.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f9696880.js",
+    "static/js/2.6a953ef4.chunk.js",
+    "static/css/main.426ff2ac.chunk.css",
+    "static/js/main.09bbec60.chunk.js"
+  ]
+}
