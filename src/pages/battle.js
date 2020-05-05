@@ -4,12 +4,11 @@ import { Tab, Tabs } from "@material-ui/core";
 import api from "../utility/api";
 import BattleResult from "../components/Battle/battleListItem";
 import { connect } from "react-redux";
+import * as actionTypes from "../store/actions";
 class Battle extends React.Component {
   constructor(props) {
     super(props);
   }
-
-  componentDidUpdate(prevProps) {}
 
   render() {
     return (
@@ -31,10 +30,10 @@ class Battle extends React.Component {
             <Tab onClick={() => this.props.reset()} label="Reset" />
           )}
 
-          <Tab
+          {/* <Tab
             onClick={() => this.props.onSaveComponentData()}
             label="Battle"
-          />
+          /> */}
         </div>
 
         <div className="users-search-section">
@@ -69,18 +68,18 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onAddFormButtonClick: () => {
-      dispatch({ type: "ADD_FORM" });
+      dispatch({ type: actionTypes.ADD_FORM });
     },
 
     onRemoveFormButtonClick: () => {
-      dispatch({ type: "REMOVE_FORM" });
+      dispatch({ type: actionTypes.REMOVE_FORM });
     },
     reset: () => {
-      dispatch({ type: "RESET" });
+      dispatch({ type: actionTypes.RESET });
     },
-    onSaveComponentData: async () => {
-      dispatch({ type: "BATTLE" });
-    },
+    // onSaveComponentData: async () => {
+    //   dispatch({ type: actionTypes.BAT });
+    // },
   };
 };
 

@@ -3,6 +3,7 @@ import "../Battle/battle.css";
 import api from "../../utility/api";
 import { Tab, Tabs, Input, CircularProgress } from "@material-ui/core";
 import { connect } from "react-redux";
+import * as actionTypes from "../../store/actions";
 
 class SearchUser extends PureComponent {
   constructor(props) {
@@ -88,10 +89,8 @@ class SearchUser extends PureComponent {
             <Tab
               onClick={() => {
                 this.resetUser();
-                this.props.resetUser(this.state.inputData.removeFormSerial);
               }}
               label="Reset"
-              key="1"
             />
           )}
           <Tab
@@ -108,14 +107,17 @@ class SearchUser extends PureComponent {
 const mapDispatchToProps = (dispatch) => {
   return {
     onChangeComponentData: (data) => {
-      dispatch({ type: "MODIFY_CONTENT", data: data });
+      dispatch({ type: actionTypes.MODIFY_CONTENT, data: data });
     },
     removeFormButtonClick: (formSerial) => {
-      dispatch({ type: "REMOVE_FORM_CLICK", removeFormSerial: formSerial });
+      dispatch({
+        type: actionTypes.REMOVE_FORM_CLICK,
+        removeFormSerial: formSerial,
+      });
     },
 
     submitUser: (user) => {
-      dispatch({ type: "SUBMIT_FETCH_USER", user: user });
+      dispatch({ type: actionTypes.SUBMIT_FETCH_USER, user: user });
     },
   };
 };
