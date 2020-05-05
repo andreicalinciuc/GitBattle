@@ -10,12 +10,13 @@ const reducer = (state = initialState, action) => {
   if (action.type === "ADD_FORM") {
     const { dynamicFormSerial } = state;
     let tempDynamicSerial = dynamicFormSerial;
-    let lastFormSerial = tempDynamicSerial.length + 1;
+    console.log(tempDynamicSerial[tempDynamicSerial.length-1])
+    let lastFormSerial = tempDynamicSerial[tempDynamicSerial.length-1] + 1;
     tempDynamicSerial = [...tempDynamicSerial, lastFormSerial];
     console.log("ADD_FORM");
     return {
       ...state,
-      dynamicFormSerial: tempDynamicSerial,
+      dynamicFormSerial: tempDynamicSerial.concat(),
     };
   }
   if (action.type === "REMOVE_FORM") {
@@ -41,10 +42,11 @@ const reducer = (state = initialState, action) => {
       dynamicFormData.splice(dynamicFormData.indexOf(removeItem), 1);
     dynamicFormData.push(action.data);
     console.log(dynamicFormData);
-    return { ...state, dynamicFormData: dynamicFormData };
+    return { ...state, dynamicFormData: dynamicFormData.concat() };
   }
 
   if (action.type === "REMOVE_FORM_CLICK") {
+    console.log("REMOVE_FORM_CLICK");
     const { dynamicFormSerial, dynamicFormData } = state;
     let tempDynamicSerial = dynamicFormSerial;
     let tempDynamicComponentData = dynamicFormData;
@@ -67,8 +69,8 @@ const reducer = (state = initialState, action) => {
 
     return {
       ...state,
-      dynamicFormSerial: tempDynamicSerial,
-      dynamicFormData: tempDynamicComponentData,
+      dynamicFormSerial: tempDynamicSerial.concat(),
+      dynamicFormData: tempDynamicComponentData.concat(),
     };
   }
   if (action.type === "RESET") {
@@ -76,7 +78,7 @@ const reducer = (state = initialState, action) => {
 
     return {
       ...state,
-      dynamicFormSerial: [("", 1), ("", 2)],
+      dynamicFormSerial: [("", 1), ("", 2)].concat(),
       dynamicFormData: [],
       dyanicDataFromFetch: null,
     };

@@ -13,11 +13,13 @@ class SearchUser extends PureComponent {
     };
   }
   fetchUser = async (data) => {
+    console.log(data);
     if (data != null) {
       this.setState({
         isLoading: false,
       });
       var respone = await api.fetchUser(data.value);
+      console.log(respone);
       this.setState({
         repo: respone,
         isLoading: true,
@@ -30,9 +32,7 @@ class SearchUser extends PureComponent {
     });
   };
   render() {
-    const {
-      formSerial,
-    } = this.props;
+    const { formSerial } = this.props;
     let inputData;
     return (
       <div className="user-container-search">
@@ -59,7 +59,7 @@ class SearchUser extends PureComponent {
               formSerial: formSerial,
               value: e.target.value,
             };
-
+            console.log(inputData)
             this.props.onChangeComponentData(inputData);
           }}
           placeholder={`User ${formSerial}`}
@@ -70,7 +70,6 @@ class SearchUser extends PureComponent {
             <Tab
               onClick={() => this.fetchUser(inputData)}
               label="Submit"
-              key="0"
             />
           ) : (
             <Tab onClick={() => this.resetUser()} label="Reset" key="1" />
@@ -78,7 +77,6 @@ class SearchUser extends PureComponent {
           <Tab
             onClick={() => this.props.removeFormButtonClick(formSerial)}
             label="Remove"
-            key="2"
           />
         </Tabs>
       </div>
