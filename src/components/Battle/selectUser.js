@@ -2,7 +2,9 @@ import React, { PureComponent } from "react";
 import "../Battle/battle.css";
 import api from "../../utility/api";
 import { Tab, Tabs, Input, CircularProgress } from "@material-ui/core";
-export default class SearchUser extends PureComponent {
+import { connect } from "react-redux";
+
+ class SearchUser extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -53,26 +55,30 @@ export default class SearchUser extends PureComponent {
           <CircularProgress />
         )}
         <Input
-        key="3"
+          key="3"
           onChange={(e) => {
             inputData = {
               formSerial: formSerial,
               value: e.target.value,
             };
 
-            onChangeComponentData(inputData);
+            this.props.onChangeComponentData(inputData);
           }}
           placeholder={`User ${formSerial}`}
           type="text"
         />
         <Tabs>
           {this.state.repo == null ? (
-            <Tab onClick={() => this.fetchUser(inputData)} label="Submit" key="0" />
+            <Tab
+              onClick={() => this.fetchUser(inputData)}
+              label="Submit"
+              key="0"
+            />
           ) : (
             <Tab onClick={() => this.resetUser()} label="Reset" key="1" />
           )}
           <Tab
-            onClick={() => removeFormButtonClick(formSerial)}
+            onClick={() => this.props.removeFormButtonClick(formSerial)}
             label="Remove"
             key="2"
           />
@@ -81,3 +87,15 @@ export default class SearchUser extends PureComponent {
     );
   }
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onChangeComponentData: (data) => {
+      dispatch({ type: "MODIFY_CONTENT" ,data:data});
+    },
+    removeFormButtonClick: (formSerial) => {
+      dispatch({ type: "REMOVE_FORM_CLICK" ,removeFormSerial:formSerial});
+    },
+  };
+};
+export default connect(null, mapDispatchToProps)(SearchUser);

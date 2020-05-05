@@ -6,7 +6,7 @@ function fetchUser(username) {
 
 export default {
   battle: async function (users) {
-    return Promise.all(
+    return  Promise.all(
       users.map(async (user) => {
         return await fetchUser(user.value);
       })
