@@ -13,13 +13,13 @@ class Home extends React.Component {
     return (
       <div className="home-container">
         <img
-          src="https://battle-arena.my/wp/wp-content/uploads/2018/10/BAlogoRED-Copy.png"
+          src={require('../assets/gitBattle.png')}
           width="70%"
         ></img>
         <p className="home-description">Are you ready to fight?</p>
 
         <div>
-          <Tabs>
+          <Tabs value={false}>
             <Link to="/battle" className="navigationLink">
               <Tab label="Yes" onClick={() => click()} />
             </Link>
