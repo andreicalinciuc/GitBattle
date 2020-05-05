@@ -10,16 +10,18 @@ class SearchUser extends PureComponent {
     this.state = {
       repo: null,
       isLoading: true,
+      inputData: {
+        formSerial: null,
+        value: null,
+      },
     };
   }
   fetchUser = async (data) => {
-    console.log(data);
     if (data != null) {
       this.setState({
         isLoading: false,
       });
-      var respone = await api.fetchUser(data.value);
-      console.log(respone);
+      var respone = await api.fetchUser(data);
       this.setState({
         repo: respone,
         isLoading: true,
@@ -29,11 +31,14 @@ class SearchUser extends PureComponent {
   resetUser = () => {
     this.setState({
       repo: null,
+      inputData: {
+        formSerial: null,
+        value: null,
+      },
     });
   };
   render() {
     const { formSerial } = this.props;
-    let inputData;
     return (
       <div className="user-container-search">
         {this.state.isLoading == true ? (
@@ -54,13 +59,19 @@ class SearchUser extends PureComponent {
         )}
         <Input
           key="3"
+          value={this.state.value}
           onChange={(e) => {
-            inputData = {
-              formSerial: formSerial,
-              value: e.target.value,
-            };
-            console.log(inputData)
-            this.props.onChangeComponentData(inputData);
+            this.setState({
+              inputData: {
+                formSerial: formSerial,
+                value: e.target.value,
+              },
+            });
+            this.state.inputData.value !== null &&
+              this.props.onChangeComponentData({
+                formSerial: formSerial,
+                value: e.target.value,
+              });
           }}
           placeholder={`User ${formSerial}`}
           type="text"
@@ -68,15 +79,23 @@ class SearchUser extends PureComponent {
         <Tabs>
           {this.state.repo == null ? (
             <Tab
-              onClick={() => this.fetchUser(inputData)}
+              onClick={() => this.fetchUser(this.state.inputData.value)}
               label="Submit"
             />
           ) : (
-            <Tab onClick={() => this.resetUser()} label="Reset" key="1" />
+            <Tab
+              onClick={() => {
+                this.resetUser();
+                this.props.resetUser(this.state.inputData.removeFormSerial);
+              }}
+              label="Reset"
+              key="1"
+            />
           )}
           <Tab
             onClick={() => this.props.removeFormButtonClick(formSerial)}
             label="Remove"
+            disabled={this.props.length <= 1}
           />
         </Tabs>
       </div>
@@ -91,6 +110,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     removeFormButtonClick: (formSerial) => {
       dispatch({ type: "REMOVE_FORM_CLICK", removeFormSerial: formSerial });
+    },
+    resetUser: (formSerial) => {
+      dispatch({ type: "REMOVE_USER", removeFormSerial: formSerial });
     },
   };
 };

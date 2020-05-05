@@ -9,14 +9,10 @@ class Battle extends React.Component {
     super(props);
   }
 
-  onSaveComponentData = async (data) => {};
-
-  componentDidUpdate(prevProps){
-   
-  }
+  componentDidUpdate(prevProps) {}
 
   render() {
-    console.log('rerender')
+    console.log("rerender");
     return (
       <div>
         <div className="battle-controller">
@@ -25,13 +21,20 @@ class Battle extends React.Component {
             <Tabs>
               <Tab onClick={this.props.onAddFormButtonClick} label="+" />
 
-              <Tab onClick={this.props.onRemoveFormButtonClick} label="-" />
+              <Tab
+                onClick={this.props.onRemoveFormButtonClick}
+                label="-"
+                disabled={this.props.dynamicFormSerial > 0}
+              />
             </Tabs>
           ) : (
             <Tab onClick={() => this.props.reset} label="Reset" />
           )}
 
-          <Tab onClick={() => this.props.onSaveComponentData} label="Battle" />
+          <Tab
+            onClick={() => this.props.onSaveComponentData()}
+            label="Battle"
+          />
         </div>
 
         <div className="users-search-section">
@@ -44,11 +47,8 @@ class Battle extends React.Component {
                 return (
                   <SearchUser
                     key={item}
-                    {...this.props}
                     formSerial={item}
-                    removeFormButtonClick={this.props.removeFormButtonClick}
-                    onChangeComponentData={this.props.onChangeComponentData}
-                    fetchUser={this.fetchUser}
+                    length={this.props.dynamicFormSerial.length}
                   />
                 );
               })}

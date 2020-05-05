@@ -10,8 +10,7 @@ const reducer = (state = initialState, action) => {
   if (action.type === "ADD_FORM") {
     const { dynamicFormSerial } = state;
     let tempDynamicSerial = dynamicFormSerial;
-    console.log(tempDynamicSerial[tempDynamicSerial.length-1])
-    let lastFormSerial = tempDynamicSerial[tempDynamicSerial.length-1] + 1;
+    let lastFormSerial = tempDynamicSerial[tempDynamicSerial.length - 1] + 1;
     tempDynamicSerial = [...tempDynamicSerial, lastFormSerial];
     console.log("ADD_FORM");
     return {
@@ -31,18 +30,23 @@ const reducer = (state = initialState, action) => {
   }
   if (action.type === "MODIFY_CONTENT") {
     const { dynamicFormData } = state;
+    let tempDynamicComponentData = dynamicFormData;
     let removeItem = null;
-    console.log(dynamicFormData);
-    dynamicFormData.map((item, index) => {
+    tempDynamicComponentData.map((item, index) => {
       if (item.formSerial === action.data.formSerial) {
         removeItem = item;
       }
     });
     removeItem !== null &&
-      dynamicFormData.splice(dynamicFormData.indexOf(removeItem), 1);
-    dynamicFormData.push(action.data);
-    console.log(dynamicFormData);
-    return { ...state, dynamicFormData: dynamicFormData.concat() };
+      tempDynamicComponentData.splice(
+        tempDynamicComponentData.indexOf(removeItem),
+        1
+      );
+    tempDynamicComponentData.push(action.data);
+    return {
+      ...state,
+      dynamicFormData: tempDynamicComponentData.concat(),
+    };
   }
 
   if (action.type === "REMOVE_FORM_CLICK") {
@@ -56,23 +60,16 @@ const reducer = (state = initialState, action) => {
         removeIndex = index;
       }
     });
+    tempDynamicComponentData.splice(removeIndex, 1);
 
-    tempDynamicComponentData.splice(
-      tempDynamicComponentData.indexOf(removeIndex),
-      1
-    );
-
-    tempDynamicSerial.splice(
-      tempDynamicSerial.indexOf(action.removeFormSerial),
-      1
-    );
-
+    tempDynamicSerial.splice(removeIndex, 1);
     return {
       ...state,
       dynamicFormSerial: tempDynamicSerial.concat(),
       dynamicFormData: tempDynamicComponentData.concat(),
     };
   }
+
   if (action.type === "RESET") {
     console.log("RESET");
 
@@ -83,21 +80,19 @@ const reducer = (state = initialState, action) => {
       dyanicDataFromFetch: null,
     };
   }
-  if (action.type === "BATTLE") {
-    console.log("BATTLE");
 
-    async function fetchUser() {
+  if (action.type === "BATTLE") {
       const { dynamicFormData } = state;
-      var response = await api.battle(state.dynamicFormData);
+      var response =  api.battle(state.dynamicFormData);
+      console.log(response)
       return {
         ...state,
         saveComponentData: dynamicFormData,
-        dyanicDataFromFetch: response,
+        // dyanicDataFromFetch: response,
         dynamicComponentData: [],
         dynamicFormSerial: [],
       };
-    }
-    return fetchUser();
+    
   }
 
   return state;
