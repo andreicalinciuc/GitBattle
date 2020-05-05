@@ -20,33 +20,30 @@ const reducer = (state = initialState, action) => {
   }
   if (action.type === "REMOVE_FORM") {
     console.log("REMOVE_FORM");
-    let tempDynamicSerial = state.dynamicFormSerial;
-    let tempDynamicData = state.dynamicFormData;
-    tempDynamicSerial.pop();
-    tempDynamicData.pop();
+    const { dynamicFormData, dynamicFormSerial } = state;
+
     return {
       ...state,
-      dynamicFormSerial: tempDynamicSerial,
-      dynamicFormData: tempDynamicData,
+      dynamicFormSerial: dynamicFormSerial.slice(0, -1),
+      dynamicFormData: dynamicFormData.slice(0, -1),
     };
   }
   if (action.type === "MODIFY_CONTENT") {
     const { dynamicFormData } = state;
-    let tempDynamicComponentData = dynamicFormData;
     let removeItem = null;
-    tempDynamicComponentData.map((item, index) => {
+    console.log(dynamicFormData);
+    dynamicFormData.map((item, index) => {
       if (item.formSerial === action.data.formSerial) {
         removeItem = item;
       }
     });
     removeItem !== null &&
-      tempDynamicComponentData.splice(
-        tempDynamicComponentData.indexOf(removeItem),
-        1
-      );
-    tempDynamicComponentData.push(action.data);
-    return { ...state, dynamicFormData: tempDynamicComponentData };
+      dynamicFormData.splice(dynamicFormData.indexOf(removeItem), 1);
+    dynamicFormData.push(action.data);
+    console.log(dynamicFormData);
+    return { ...state, dynamicFormData: dynamicFormData };
   }
+
   if (action.type === "REMOVE_FORM_CLICK") {
     const { dynamicFormSerial, dynamicFormData } = state;
     let tempDynamicSerial = dynamicFormSerial;
@@ -75,6 +72,8 @@ const reducer = (state = initialState, action) => {
     };
   }
   if (action.type === "RESET") {
+    console.log("RESET");
+
     return {
       ...state,
       dynamicFormSerial: [("", 1), ("", 2)],
@@ -83,20 +82,20 @@ const reducer = (state = initialState, action) => {
     };
   }
   if (action.type === "BATTLE") {
-    async function fetchUser () {
-        const { dynamicFormData } = state;
-        var response = await api.battle(state.dynamicFormData);
-        return {
-          ...state,
-          saveComponentData: dynamicFormData,
-          dyanicDataFromFetch: response,
-          dynamicComponentData: [],
-          dynamicFormSerial: [],
-        };
-      }
-      return fetchUser();
-    
-   
+    console.log("BATTLE");
+
+    async function fetchUser() {
+      const { dynamicFormData } = state;
+      var response = await api.battle(state.dynamicFormData);
+      return {
+        ...state,
+        saveComponentData: dynamicFormData,
+        dyanicDataFromFetch: response,
+        dynamicComponentData: [],
+        dynamicFormSerial: [],
+      };
+    }
+    return fetchUser();
   }
 
   return state;

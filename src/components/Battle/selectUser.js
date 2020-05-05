@@ -4,7 +4,7 @@ import api from "../../utility/api";
 import { Tab, Tabs, Input, CircularProgress } from "@material-ui/core";
 import { connect } from "react-redux";
 
- class SearchUser extends PureComponent {
+class SearchUser extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -31,8 +31,6 @@ import { connect } from "react-redux";
   };
   render() {
     const {
-      onChangeComponentData,
-      removeFormButtonClick,
       formSerial,
     } = this.props;
     let inputData;
@@ -91,10 +89,10 @@ import { connect } from "react-redux";
 const mapDispatchToProps = (dispatch) => {
   return {
     onChangeComponentData: (data) => {
-      dispatch({ type: "MODIFY_CONTENT" ,data:data});
+      dispatch({ type: "MODIFY_CONTENT", data: data });
     },
     removeFormButtonClick: (formSerial) => {
-      dispatch({ type: "REMOVE_FORM_CLICK" ,removeFormSerial:formSerial});
+      dispatch({ type: "REMOVE_FORM_CLICK", removeFormSerial: formSerial });
     },
   };
 };

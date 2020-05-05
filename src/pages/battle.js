@@ -11,7 +11,12 @@ class Battle extends React.Component {
 
   onSaveComponentData = async (data) => {};
 
+  componentDidUpdate(prevProps){
+   
+  }
+
   render() {
+    console.log('rerender')
     return (
       <div>
         <div className="battle-controller">
