@@ -1,0 +1,29 @@
+.group-list-container{
+    color: whitesmoke;
+    border: 1px solid white;
+    border-radius: 5%;
+    width: 260px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 55px;
+    padding: 5px 0 5px;
+    background-color: rgb(34, 33, 33);
+    align-content: center;
+}
+.group-list-section{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.group-list-section button{
+    border: 1px  grey solid;
+    margin: 5px 3px 5px;
+    color:rgb(240, 233, 233);
+    height: 50px;
+}
+
+.user-container-search .add-user{
+vertical-align: top;}

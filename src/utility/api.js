@@ -4,6 +4,12 @@ async function fetchUser(username) {
   ).then((response) => response.json());
 }
 
+function getListByID(id) {
+  return fetch("https://jsonblob.com/api/jsonBlob/" + id)
+    .then((response) => response.json())
+    .then((data) => data["users"]);
+}
+
 export default {
   battle: async function (users) {
     return users.map(async (user) => {
@@ -12,6 +18,9 @@ export default {
   },
   fetchUser: (user) => {
     return fetchUser(user);
+  },
+  getListByID: (id) => {
+    return getListByID(id);
   },
 
   fetchRepo: function (language) {

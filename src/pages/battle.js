@@ -40,7 +40,13 @@ class Battle extends React.Component {
           {this.props.dyanicDataFromFetch.length ===
           this.props.dynamicFormSerial.length
             ? this.props.dyanicDataFromFetch.map((item) => {
-                return <BattleResult user={item} key={item.id} />;
+                return (
+                  <BattleResult
+                    user={item}
+                    key={item.id}
+                    winnerScore={this.props.winnerScore}
+                  />
+                );
               })
             : this.props.dynamicFormSerial.length >= 1 &&
               this.props.dynamicFormSerial.map((item) => {
@@ -62,6 +68,7 @@ const mapStateToProps = (state) => {
     dynamicFormSerial: state.dynamicFormSerial,
     dynamicFormData: state.dynamicFormData,
     dyanicDataFromFetch: state.dyanicDataFromFetch,
+    winnerScore: state.winnerScore,
   };
 };
 
