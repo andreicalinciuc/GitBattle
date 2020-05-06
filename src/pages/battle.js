@@ -29,11 +29,6 @@ class Battle extends React.Component {
           ) : (
             <Tab onClick={() => this.props.reset()} label="Reset" />
           )}
-
-          {/* <Tab
-            onClick={() => this.props.onSaveComponentData()}
-            label="Battle"
-          /> */}
         </div>
 
         <div className="users-search-section">
@@ -65,10 +60,10 @@ class Battle extends React.Component {
 }
 const mapStateToProps = (state) => {
   return {
-    dynamicFormSerial: state.dynamicFormSerial,
-    dynamicFormData: state.dynamicFormData,
-    dyanicDataFromFetch: state.dyanicDataFromFetch,
-    winnerScore: state.winnerScore,
+    dynamicFormSerial: state.battle.dynamicFormSerial,
+    dynamicFormData: state.battle.dynamicFormData,
+    dyanicDataFromFetch: state.battle.dyanicDataFromFetch,
+    winnerScore: state.battle.winnerScore,
   };
 };
 
@@ -84,9 +79,6 @@ const mapDispatchToProps = (dispatch) => {
     reset: () => {
       dispatch({ type: actionTypes.RESET });
     },
-    // onSaveComponentData: async () => {
-    //   dispatch({ type: actionTypes.BAT });
-    // },
   };
 };
 

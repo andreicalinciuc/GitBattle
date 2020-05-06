@@ -68,7 +68,6 @@ class SearchUser extends PureComponent {
           <CircularProgress />
         )}
         <Input
-          key="3"
           value={this.state.value}
           onChange={(e) => {
             this.setState({

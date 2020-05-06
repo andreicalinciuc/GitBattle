@@ -2,14 +2,13 @@ import React from "react";
 import api from "../utility/api";
 import "../components/Group/group.css";
 import { Tab } from "@material-ui/core";
-import AddUser from '../components/Group/addUser'
+import AddUser from "../components/Group/addUser";
+import * as actionTypes from "../store/actions";
+import { connect } from "react-redux";
+import UserContainer from "../components/Group/userGroupContainer";
 class Group extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      leftList: [],
-      rightList: [],
-    };
   }
 
   componentDidMount = async () => {
@@ -19,10 +18,8 @@ class Group extends React.Component {
     var rightList = await api.getListByID(
       "cd457331-8f8e-11ea-bd04-5f6877a3510f"
     );
-    this.setState({
-      leftList: leftList,
-      rightList: rightList,
-    });
+
+    this.props.setTeam(leftList, rightList);
   };
 
   render() {
@@ -30,19 +27,45 @@ class Group extends React.Component {
       <div>
         <div className="group-list-section">
           <div className="group-list-container">
-            {this.state.leftList.map((item) => {
-              return <p> {item.name}</p>;
-            })}
+            {this.props.leftTeam.length > 0 ? (
+              <div className="group-users-zone">
+                <p>Total Score: {this.props.scoreLeftTeam}</p>
+                {this.props.leftTeam.map((item, index) => {
+                  return (
+                    <UserContainer
+                      key={index}
+                      imgProfile={item.gitData.avatar_url}
+                      name={item.gitData.login}
+                      team="left"
+                      score={item.score}
+                    />
+                  );
+                })}
+              </div>
+            ) : null}
           </div>
-          <div>
-            <Tab label="battle"></Tab>
-          <AddUser></AddUser>
-            
+          <div class="group-battle-controler">
+            <Tab label="fight"></Tab>
+            <AddUser></AddUser>
           </div>
           <div className="group-list-container">
-            {this.state.rightList.map((item) => {
-              return <p> {item.name}</p>;
-            })}
+            {this.props.rightTeam.length > 0 ? (
+              <div className="group-users-zone">
+                <p>Total Score: {this.props.scoreRightTeamL}</p>
+                {this.props.rightTeam.map((item, index) => {
+                  console.log(item);
+                  return (
+                    <UserContainer
+                      key={index}
+                      imgProfile={item.gitData.avatar_url}
+                      name={item.gitData.login}
+                      team="right"
+                      score={item.score}
+                    />
+                  );
+                })}
+              </div>
+            ) : null}
           </div>
         </div>
       </div>
@@ -50,4 +73,25 @@ class Group extends React.Component {
   }
 }
 
-export default Group;
+const mapStateToProps = (state) => {
+  return {
+    leftTeam: state.group.leftTeam,
+    rightTeam: state.group.rightTeam,
+    scoreLeftTeam: state.group.scoreLeftTeam,
+    scoreRightTeamL: state.group.scoreRightTeamL,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setTeam: (leftList, rightList) => {
+      dispatch({
+        type: actionTypes.SET_TEAM,
+        leftList: leftList,
+        rightList: rightList,
+      });
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Group);
