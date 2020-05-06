@@ -63,12 +63,13 @@ class AddUser extends PureComponent {
                       {
                         name: this.state.repo.login,
                         gitData: this.state.repo,
+                        score: this.state.score,
+
                       },
                       "left",
                       this.state.score
                     );
-                  }
-                }
+                  }}
                 />
                 <div>
                   <div className="user-find">
@@ -82,12 +83,12 @@ class AddUser extends PureComponent {
                       {
                         name: this.state.repo.login,
                         gitData: this.state.repo,
+                        score: this.state.score,
                       },
                       "right",
                       this.state.score
                     );
-                  }
-                }
+                  }}
                 />
               </div>
             )

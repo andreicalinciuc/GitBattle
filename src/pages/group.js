@@ -1,7 +1,7 @@
 import React from "react";
 import api from "../utility/api";
 import "../components/Group/group.css";
-import { Tab } from "@material-ui/core";
+import { Tab, Tabs } from "@material-ui/core";
 import AddUser from "../components/Group/addUser";
 import * as actionTypes from "../store/actions";
 import { connect } from "react-redux";
@@ -20,6 +20,15 @@ class Group extends React.Component {
     );
 
     this.props.setTeam(leftList, rightList);
+  };
+
+  save_datas = async () => {
+    await api.saveList("af8e7eb3-8f6d-11ea-bd04-e70beb125682", {
+      "users": this.props.leftTeam,
+    });
+    await api.saveList("cd457331-8f8e-11ea-bd04-5f6877a3510f", {
+      "users": this.props.rightTeam,
+    });
   };
 
   render() {
@@ -45,7 +54,10 @@ class Group extends React.Component {
             ) : null}
           </div>
           <div class="group-battle-controler">
-            <Tab label="fight"></Tab>
+            <Tabs value={false}>
+              <Tab label="fight"></Tab>
+              <Tab label="save data" onClick={() => this.save_datas()} />
+            </Tabs>
             <AddUser></AddUser>
           </div>
           <div className="group-list-container">

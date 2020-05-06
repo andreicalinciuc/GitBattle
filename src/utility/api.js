@@ -9,7 +9,24 @@ function getListByID(id) {
     .then((response) => response.json())
     .then((data) => data["users"]);
 }
-
+function saveList(id, data) {
+  console.log(id, data);
+  console.log(JSON.stringify(data))
+  return fetch("https://jsonblob.com/api/jsonBlob/" + id, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("Success:", data);
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+}
 export default {
   battle: async function (users) {
     return users.map(async (user) => {
@@ -21,6 +38,9 @@ export default {
   },
   getListByID: (id) => {
     return getListByID(id);
+  },
+  saveList: (id, data) => {
+    return saveList(id, data);
   },
 
   fetchRepo: function (language) {

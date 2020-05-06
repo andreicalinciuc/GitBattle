@@ -10,9 +10,12 @@ const initialState = {
 
 function calculateTotalScore(listTeam) {
   let score = 0;
-  listTeam.map((item) => {
-    score += item.score;
-  });
+  if (listTeam != null) {
+    listTeam.map((item) => {
+      score += item.score;
+    });
+  }
+
   return score;
 }
 
@@ -62,14 +65,29 @@ const reducer = (state = initialState, action) => {
             removeIndex = index;
           }
         });
-
+        let tempScoreUser = leftTeam[removeIndex].score;
         temporayDynamicLeftTeam.splice(removeIndex, 1);
         return {
           ...state,
           leftTeam: temporayDynamicLeftTeam.concat(),
-          scoreLeftTeam: 100,
+          scoreLeftTeam: state.scoreLeftTeam-tempScoreUser,
         };
       } else {
+        let temporayDynamicRightTeam = rightTeam;
+        let removeIndex = null;
+        rightTeam.map((item, index) => {
+          if (item.gitData.login === action.name) {
+            removeIndex = index;
+          }
+        });
+        let tempScoreUser = rightTeam[removeIndex].score;
+
+        temporayDynamicRightTeam.splice(removeIndex, 1);
+        return {
+          ...state,
+          rightTeam: temporayDynamicRightTeam.concat(),
+          scoreRightTeamL: state.scoreRightTeamL-tempScoreUser,
+        };
       }
     }
 
