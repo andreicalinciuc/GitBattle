@@ -35,6 +35,7 @@
   transform: scale(1.05);
 }
 
+
 .slideleft-enter {
   transform: translateX(-100%);
 }
@@ -114,20 +115,11 @@
   opacity: 0;
 }
 
-
 .fade-enter-active {
   opacity: 1;
-  transition: opacity 300ms ease-out;
+  transition: opacity 1000ms ease-out;
 }
 
-.fade-leave {
-  opacity: 1;
-}
-
-.fade-leave-active {
-  opacity: 0;
-  transition: opacity 300ms ease-out;
-}
 .fade-appear{
   opacity: 0;
 }
@@ -135,3 +127,4 @@
   opacity: 1;
   transition: opacity 1000ms ease-out;
 }
+

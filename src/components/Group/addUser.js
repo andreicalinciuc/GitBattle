@@ -107,7 +107,7 @@ class AddUser extends PureComponent {
           type="text"
           id="name"
           inputRef={(el) => (this.name = el)}
-          placeholder="Find your player"
+          placeholder="Find your fighter"
         />
         <Tabs value={false}>
           {this.state.repo == null ? (

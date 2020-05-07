@@ -1,3 +1,6 @@
+import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
+
 async function fetchUser(username) {
   return await fetch(
     "https://api.github.com/users/" + username
@@ -9,7 +12,7 @@ function getListByID(id) {
     .then((response) => response.json())
     .then((data) => data["users"]);
 }
-function saveList(id, data) {
+function saveList(id, data, team) {
   return fetch("https://jsonblob.com/api/jsonBlob/" + id, {
     method: "PUT",
     headers: {
@@ -19,10 +22,17 @@ function saveList(id, data) {
   })
     .then((response) => response.json())
     .then((data) => {
-      return("Success");
+      toast.success(`Succes ${team}`.toUpperCase(), {
+        autoClose: 3000,
+        className: "dark-toast",
+        position:toast.POSITION.BOTTOM_RIGHT
+      });
     })
     .catch((error) => {
-      return("Errora");
+      toast.error(`Error ${team}`.toUpperCase(), {
+        autoClose: 3000,
+        className: "dark-toast",
+      });
     });
 }
 export default {
@@ -37,8 +47,8 @@ export default {
   getListByID: (id) => {
     return getListByID(id);
   },
-  saveList: (id, data) => {
-    return saveList(id, data);
+  saveList: (id, data, team) => {
+    return saveList(id, data, team);
   },
 
   fetchRepo: function (language) {

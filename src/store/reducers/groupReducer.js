@@ -1,4 +1,3 @@
-import api from "../../utility/api";
 import * as actionTypes from "../actions";
 const initialState = {
   leftTeam: [],
@@ -22,7 +21,6 @@ function calculateTotalScore(listTeam) {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.SET_TEAM: {
-      console.log("SET_TEAM");
       let totalScoreLeftTeam = calculateTotalScore(action.leftList);
       let totalScoreRightTeam = calculateTotalScore(action.rightList);
 
@@ -36,9 +34,8 @@ const reducer = (state = initialState, action) => {
     }
 
     case actionTypes.ADD_TEAM: {
-      console.log("ADD_TEAM");
       const { leftTeam, rightTeam } = state;
-      if (action.team == "left") {
+      if (action.team === "left") {
         return {
           ...state,
           leftTeam: [...leftTeam, action.user],
@@ -54,10 +51,8 @@ const reducer = (state = initialState, action) => {
     }
 
     case actionTypes.REMOVE_USER: {
-      console.log("REMOVE_USER");
-
       const { leftTeam, rightTeam } = state;
-      if (action.team == "left") {
+      if (action.team === "left") {
         let temporayDynamicLeftTeam = leftTeam;
         let removeIndex = null;
         leftTeam.map((item, index) => {

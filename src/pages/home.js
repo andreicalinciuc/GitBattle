@@ -2,33 +2,37 @@ import React from "react";
 import "../components/Home/home.css";
 import { Tabs, Tab } from "@material-ui/core";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 
 class Home extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const { click } = this.props;
     return (
-      <div className="home-container">
-        <img
-          src={require('../assets/gitBattle.png')}
-          width="70%"
-        ></img>
-        <p className="home-description">Are you ready to fight?</p>
+      <ReactCSSTransitionGroup
+        transitionName="fade"
+        transitionAppear={true}
+        transitionAppearTimeout={1000}
+      >
+        <div className="home-container">
+          <img
+            src={require("../assets/gitBattle.png")}
+            width="70%"
+            alt="logo"
+          ></img>
+          <p className="home-description">Are you ready to fight?</p>
 
-        <div>
-          <Tabs value={false}>
-            <Link to="/battle" className="navigationLink">
-              <Tab label="Yes" onClick={() => click()} />
-            </Link>
-            <Link to="/notReady" className="navigationLink">
-              <Tab label="No" />
-            </Link>
-          </Tabs>
+          <div>
+            <Tabs value={false}>
+              <Link to="/battle" className="navigationLink">
+                <Tab label="Yes" onClick={() => click()} />
+              </Link>
+              <Link to="/notReady" className="navigationLink">
+                <Tab label="No" />
+              </Link>
+            </Tabs>
+          </div>
         </div>
-      </div>
+      </ReactCSSTransitionGroup>
     );
   }
 }

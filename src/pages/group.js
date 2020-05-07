@@ -8,8 +8,7 @@ import { connect } from "react-redux";
 import UserContainer from "../components/Group/userGroupContainer";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 import "../components/Layout/Layout.css";
-import { CSSTransition } from "react-transition-group";
-
+import { ToastContainer, toast } from "react-toastify";
 class Group extends React.Component {
   constructor(props) {
     super(props);
@@ -35,16 +34,16 @@ class Group extends React.Component {
       "af8e7eb3-8f6d-11ea-bd04-e70beb125682",
       {
         users: this.props.leftTeam,
-      }
+      },
+      "left team"
     );
     const respRightTeam = await api.saveList(
       "cd457331-8f8e-11ea-bd04-5f6877a3510f",
       {
         users: this.props.rightTeam,
-      }
+      },
+      "right team"
     );
-    console.log(respLeftTeam);
-    console.log(respRightTeam);
   };
 
   calculateWinner() {
@@ -62,11 +61,13 @@ class Group extends React.Component {
   render() {
     return (
       <div>
+        <ToastContainer autoClose={3500} bodyClassName="dark-toast" />
+
         <div className="group-list-section">
           <div
             className={`group-list-container ${
-              this.state.fight == true
-                ? this.state.winnerScore == this.props.scoreLeftTeam
+              this.state.fight === true
+                ? this.state.winnerScore === this.props.scoreLeftTeam
                   ? "winner"
                   : "looser"
                 : ""
@@ -74,10 +75,10 @@ class Group extends React.Component {
           >
             {this.props.leftTeam.length > 0 ? (
               <div className="group-users-zone">
-                {this.state.fight == true ? (
+                {this.state.fight === true ? (
                   <p>
                     Total Score: {this.props.scoreLeftTeam}{" "}
-                    {this.state.fight == true
+                    {this.state.fight === true
                       ? this.state.winnerScore == this.props.scoreLeftTeam
                         ? "Winner"
                         : "Looser"
@@ -107,7 +108,7 @@ class Group extends React.Component {
               </div>
             ) : null}
           </div>
-          {this.state.fight == false ? (
+          {this.state.fight === false ? (
             <div class="group-battle-controler">
               <Tabs value={false}>
                 <Tab
@@ -121,6 +122,8 @@ class Group extends React.Component {
               </Tabs>
               <ReactCSSTransitionGroup
                 transitionName="fade"
+                transitionEnterTimeout={2000}
+                transitionLeaveTimeout={1000}
                 transitionAppear={true}
                 transitionAppearTimeout={1000}
               >
@@ -137,8 +140,8 @@ class Group extends React.Component {
           )}
           <div
             className={`group-list-container ${
-              this.state.fight == true
-                ? this.state.winnerScore == this.props.scoreRightTeamL
+              this.state.fight === true
+                ? this.state.winnerScore === this.props.scoreRightTeamL
                   ? "winner"
                   : "looser"
                 : ""
@@ -146,11 +149,11 @@ class Group extends React.Component {
           >
             {this.props.rightTeam.length > 0 ? (
               <div className="group-users-zone">
-                {this.state.fight == true ? (
+                {this.state.fight === true ? (
                   <p>
                     Total Score: {this.props.scoreRightTeamL}{" "}
-                    {this.state.fight == true
-                      ? this.state.winnerScore == this.props.scoreRightTeamL
+                    {this.state.fight === true
+                      ? this.state.winnerScore === this.props.scoreRightTeamL
                         ? "Winner"
                         : "Looser"
                       : ""}

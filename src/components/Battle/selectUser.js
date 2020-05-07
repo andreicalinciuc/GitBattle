@@ -51,7 +51,7 @@ class SearchUser extends PureComponent {
     const { formSerial } = this.props;
     return (
       <div className="user-container-search">
-        {this.state.isLoading == true ? (
+        {this.state.isLoading === true ? (
           this.state.repo != null ? (
             <div>
               {this.state.repo.message != null ? (
@@ -88,7 +88,7 @@ class SearchUser extends PureComponent {
           inputRef={(el) => (this.name = el)}
         />
         <Tabs value={false}>
-          {this.state.repo == null ? (
+          {this.state.repo === null ? (
             <Tab
               onClick={() => this.fetchUser(this.state.inputData.value)}
               label="Submit"
@@ -96,6 +96,7 @@ class SearchUser extends PureComponent {
           ) : (
             <Tab
               onClick={() => {
+                this.props.resetFetchUser(this.name.value);
                 this.name.value = "";
                 this.resetUser();
               }}
@@ -103,7 +104,12 @@ class SearchUser extends PureComponent {
             />
           )}
           <Tab
-            onClick={() => this.props.removeFormButtonClick(formSerial)}
+            onClick={() =>
+              this.props.removeFormButtonClick(
+                formSerial,
+                this.state.inputData.value
+              )
+            }
             label="Remove"
             disabled={this.props.length <= 1}
           />
@@ -118,10 +124,11 @@ const mapDispatchToProps = (dispatch) => {
     onChangeComponentData: (data) => {
       dispatch({ type: actionTypes.MODIFY_CONTENT, data: data });
     },
-    removeFormButtonClick: (formSerial) => {
+    removeFormButtonClick: (formSerial, name) => {
       dispatch({
         type: actionTypes.REMOVE_FORM_CLICK,
         removeFormSerial: formSerial,
+        name: name,
       });
     },
 
@@ -131,6 +138,9 @@ const mapDispatchToProps = (dispatch) => {
         user: user,
         score: score,
       });
+    },
+    resetFetchUser: (user) => {
+      dispatch({ type: actionTypes.RESET_USER, user: user });
     },
   };
 };
