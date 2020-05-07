@@ -5,14 +5,12 @@
   position: relative;
   overflow-x: hidden;
   background-color: rgb(27, 24, 24);
-
 }
 
 .main {
   display: flex;
   flex-direction: column;
   width: 100%;
-  
 }
 .navigation {
   width: 100%;
@@ -28,12 +26,112 @@
   text-decoration: none !important;
 }
 
-.navigationLink button{
-  border: 1px  grey solid;
+.navigationLink button {
+  border: 1px grey solid;
   margin: 5px 3px 5px;
-  color:rgb(240, 233, 233);
-
+  color: rgb(240, 233, 233);
 }
-.navigationLink button:hover{
+.navigationLink button:hover {
   transform: scale(1.05);
+}
+
+.slideleft-enter {
+  transform: translateX(-100%);
+}
+.slideleft-enter-active {
+  animation: slide-in-left 200ms ease-out forwards;
+}
+.slideleft-leave {
+  transform: translateX(0%);
+}
+.slideleft-leave-active {
+  animation: slide-out-left 200ms ease-out forwards;
+}
+.slideleft-appear {
+  opacity: 0;
+}
+.slideleft-appear-active {
+  opacity: 1;
+  transition: opacity 1000ms ease-out;
+}
+
+@keyframes slide-in-left {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+@keyframes slide-out-left {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+.slideright-enter {
+  transform: translateX(-100%);
+}
+.slideright-enter-active {
+  animation: slide-in-right 200ms ease-out forwards;
+}
+.slideright-leave {
+  transform: translateX(0%);
+}
+.slideright-leave-active {
+  animation: slide-out-right 200ms ease-out forwards;
+}
+.slideright-appear {
+  opacity: 0;
+}
+.slideright-appear-active {
+  opacity: 1;
+  transition: opacity 1000ms ease-out;
+}
+
+@keyframes slide-in-right {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+@keyframes slide-out-right {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+
+.fade-enter {
+  opacity: 0;
+}
+
+
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 300ms ease-out;
+}
+
+.fade-leave {
+  opacity: 1;
+}
+
+.fade-leave-active {
+  opacity: 0;
+  transition: opacity 300ms ease-out;
+}
+.fade-appear{
+  opacity: 0;
+}
+.fade-appear-active{
+  opacity: 1;
+  transition: opacity 1000ms ease-out;
 }

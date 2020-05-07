@@ -70,7 +70,7 @@ const reducer = (state = initialState, action) => {
         return {
           ...state,
           leftTeam: temporayDynamicLeftTeam.concat(),
-          scoreLeftTeam: state.scoreLeftTeam-tempScoreUser,
+          scoreLeftTeam: state.scoreLeftTeam - tempScoreUser,
         };
       } else {
         let temporayDynamicRightTeam = rightTeam;
@@ -86,7 +86,7 @@ const reducer = (state = initialState, action) => {
         return {
           ...state,
           rightTeam: temporayDynamicRightTeam.concat(),
-          scoreRightTeamL: state.scoreRightTeamL-tempScoreUser,
+          scoreRightTeamL: state.scoreRightTeamL - tempScoreUser,
         };
       }
     }

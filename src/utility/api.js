@@ -10,8 +10,6 @@ function getListByID(id) {
     .then((data) => data["users"]);
 }
 function saveList(id, data) {
-  console.log(id, data);
-  console.log(JSON.stringify(data))
   return fetch("https://jsonblob.com/api/jsonBlob/" + id, {
     method: "PUT",
     headers: {
@@ -21,10 +19,10 @@ function saveList(id, data) {
   })
     .then((response) => response.json())
     .then((data) => {
-      console.log("Success:", data);
+      return("Success");
     })
     .catch((error) => {
-      console.error("Error:", error);
+      return("Errora");
     });
 }
 export default {
