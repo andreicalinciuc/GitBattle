@@ -15,6 +15,7 @@ class Group extends React.Component {
     super(props);
     this.state = {
       fight: false,
+      winnerScore: 0,
     };
   }
 
@@ -48,9 +49,13 @@ class Group extends React.Component {
 
   calculateWinner() {
     if (this.props.scoreLeftTeam > this.props.scoreRightTeamL) {
-      return this.props.scoreLeftTeam;
+      return this.setState({
+        winnerScore: this.props.scoreLeftTeam,
+      });
     } else {
-      return this.props.scoreLeftTeam;
+      return this.setState({
+        winnerScore: this.props.scoreRightTeamL,
+      });
     }
   }
 
@@ -58,9 +63,27 @@ class Group extends React.Component {
     return (
       <div>
         <div className="group-list-section">
-          <div className="group-list-container">
+          <div
+            className={`group-list-container ${
+              this.state.fight == true
+                ? this.state.winnerScore == this.props.scoreLeftTeam
+                  ? "winner"
+                  : "looser"
+                : ""
+            }`}
+          >
             {this.props.leftTeam.length > 0 ? (
               <div className="group-users-zone">
+                {this.state.fight == true ? (
+                  <p>
+                    Total Score: {this.props.scoreLeftTeam}{" "}
+                    {this.state.fight == true
+                      ? this.state.winnerScore == this.props.scoreLeftTeam
+                        ? "Winner"
+                        : "Looser"
+                      : ""}
+                  </p>
+                ) : null}
                 <ReactCSSTransitionGroup
                   transitionName="slideleft"
                   transitionEnterTimeout={300}
@@ -68,10 +91,6 @@ class Group extends React.Component {
                   transitionAppear={true}
                   transitionAppearTimeout={1000}
                 >
-                  {this.state.fight == true ? (
-                    <p>Total Score: {this.props.scoreLeftTeam}</p>
-                  ) : null}
-
                   {this.props.leftTeam.map((item, index) => {
                     return (
                       <UserContainer
@@ -80,6 +99,7 @@ class Group extends React.Component {
                         name={item.gitData.login}
                         team="left"
                         score={item.score}
+                        fight={this.state.fight}
                       />
                     );
                   })}
@@ -94,6 +114,7 @@ class Group extends React.Component {
                   label="fight"
                   onClick={() => {
                     this.setState({ fight: !this.state.fight });
+                    this.calculateWinner();
                   }}
                 ></Tab>
                 <Tab label="save data" onClick={() => this.save_datas()} />
@@ -114,9 +135,28 @@ class Group extends React.Component {
               }}
             ></Tab>
           )}
-          <div className="group-list-container">
+          <div
+            className={`group-list-container ${
+              this.state.fight == true
+                ? this.state.winnerScore == this.props.scoreRightTeamL
+                  ? "winner"
+                  : "looser"
+                : ""
+            }`}
+          >
             {this.props.rightTeam.length > 0 ? (
               <div className="group-users-zone">
+                {this.state.fight == true ? (
+                  <p>
+                    Total Score: {this.props.scoreRightTeamL}{" "}
+                    {this.state.fight == true
+                      ? this.state.winnerScore == this.props.scoreRightTeamL
+                        ? "Winner"
+                        : "Looser"
+                      : ""}
+                  </p>
+                ) : null}
+
                 <ReactCSSTransitionGroup
                   transitionName="slideright"
                   transitionEnterTimeout={300}
@@ -124,10 +164,6 @@ class Group extends React.Component {
                   transitionAppear={true}
                   transitionAppearTimeout={1000}
                 >
-                  {this.state.fight == true ? (
-                    <p>Total Score: {this.props.scoreLeftTeam}</p>
-                  ) : null}
-
                   {this.props.rightTeam.map((item, index) => {
                     return (
                       <UserContainer
@@ -136,6 +172,7 @@ class Group extends React.Component {
                         name={item.gitData.login}
                         team="right"
                         score={item.score}
+                        fight={this.state.fight}
                       />
                     );
                   })}
