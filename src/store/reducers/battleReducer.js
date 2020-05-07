@@ -1,4 +1,3 @@
-import api from "../../utility/api";
 import * as actionTypes from "../actions";
 const initialState = {
   dynamicFormSerial: [("", 1), ("", 2)],
@@ -35,7 +34,7 @@ const reducer = (state = initialState, action) => {
       const { dynamicFormData } = state;
       let tempDynamicComponentData = dynamicFormData;
       let removeItem = null;
-      tempDynamicComponentData.map((item, index) => {
+      tempDynamicComponentData.map((item) => {
         if (item.formSerial === action.data.formSerial) {
           removeItem = item;
         }
@@ -64,10 +63,21 @@ const reducer = (state = initialState, action) => {
           removeIndex = index;
         }
       });
+      let removeIndexForm = null;
+      dynamicFormSerial.map((item, index) => {
+        if (item === action.removeFormSerial) {
+          removeIndexForm = index;
+        }
+      });
+      let removeIndexFetch = null;
+      dyanicDataFromFetch.map((item, index) => {
+        if (item.login === action.name) {
+          removeIndexFetch = index;
+        }
+      });
       tempDynamicComponentData.splice(removeIndex, 1);
-      tempDynamicFetchData.splice(removeIndex, 1);
-
-      tempDynamicSerial.splice(removeIndex, 1);
+      tempDynamicFetchData.splice(removeIndexFetch, 1);
+      tempDynamicSerial.splice(removeIndexForm, 1);
       return {
         ...state,
         dynamicFormSerial: tempDynamicSerial.concat(),
@@ -75,6 +85,7 @@ const reducer = (state = initialState, action) => {
         dyanicDataFromFetch: tempDynamicFetchData.concat(),
       };
     }
+
 
     case actionTypes.RESET: {
       console.log("RESET");
@@ -84,6 +95,22 @@ const reducer = (state = initialState, action) => {
         dynamicFormData: [].concat(),
         dyanicDataFromFetch: [].concat(),
         winnerScore: 0,
+      };
+    }
+    case actionTypes.RESET_USER: {
+      const { dyanicDataFromFetch } = state;
+      let tempDynamicFetchData = dyanicDataFromFetch;
+      let removeIndexFetch = null;
+      dyanicDataFromFetch.map((item, index) => {
+        if (item.login === action.name) {
+          removeIndexFetch = index;
+        }
+      });
+      tempDynamicFetchData.splice(removeIndexFetch, 1);
+
+      return {
+        ...state,
+        dyanicDataFromFetch: tempDynamicFetchData.concat(),
       };
     }
 

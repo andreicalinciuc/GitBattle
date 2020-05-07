@@ -1,9 +1,7 @@
 import React, { PureComponent } from "react";
 import "./battle.css";
 class BattleResult extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
+
 
   render() {
     const { user, winnerScore } = this.props;
@@ -26,7 +24,7 @@ class BattleResult extends PureComponent {
           <div className="user-find">
             {score === winnerScore ? <p className="winner-text">Winner</p> : null}
             <p>Score: {score}</p>
-            <img src={user.avatar_url} width="80px"></img>
+            <img src={user.avatar_url} width="80px" alt="User profile"></img>
             <p>@{user.login}</p>
             <p>Public repos: {user.public_repos}</p>
             <p>Followers: {user.followers}</p>

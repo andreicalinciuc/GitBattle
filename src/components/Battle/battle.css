@@ -57,61 +57,58 @@
   color: whitesmoke;
   text-align: center;
 }
-.winner-text{
-    font-size: 26px;
+.winner-text {
+  font-size: 26px;
 }
 .winner {
   animation: winner 3s;
   transform: scale(1);
-  animation-fill-mode:forwards;
+  animation-fill-mode: forwards;
 }
 
 @keyframes winner {
   0% {
     transform: scale(0.95);
-    border:gold 0.2px solid;
-
+    border: gold 0.5px solid;
   }
 
   50% {
     transform: scale(1);
-    border:whitesmoke 0.6px solid;
+    border: whitesmoke 0.7px solid;
   }
 
   70% {
     transform: scale(0.98);
-    border:gold 0.7px solid;
-
+    border: gold 0.7px solid;
   }
   100% {
     transform: scale(1);
-    border:gold 1.3px solid;
-
+    border: gold 1.3px solid;
   }
+}
+.winner .user-team-container {
+  border-bottom: gold 1px solid;
 }
 
 .looser {
   animation: looser 3s;
-  animation-fill-mode:forwards;
+  animation-fill-mode: forwards;
   transform: scale(1);
 }
 
 @keyframes looser {
   0% {
     transform: scale(0.95);
-    border:gold 0.2px solid;
-
+    border: gold 0.5px solid;
   }
 
   50% {
     transform: scale(1);
-    border:whitesmoke 0.6px solid;
-
+    border: whitesmoke 0.7px solid;
   }
 
   100% {
-    transform: scale(0.90);
-    border:whitesmoke 1px solid;
-
+    transform: scale(0.9);
+    border: whitesmoke 1px solid;
   }
 }

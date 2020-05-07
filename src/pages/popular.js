@@ -4,6 +4,8 @@ import { BoxLoading } from "react-loadingg";
 import PopularListRender from "../components/Popular/popularListItem";
 import api from "../utility/api";
 import "../components/Popular/popular.css";
+import ReactCSSTransitionGroup from "react-addons-css-transition-group";
+
 class Popular extends PureComponent {
   constructor(props) {
     super(props);
@@ -42,11 +44,19 @@ class Popular extends PureComponent {
           {this.state.isLoading === true ? (
             this.state.data.map((item, key) => {
               return (
+                <ReactCSSTransitionGroup
+                transitionName="fade"
+                transitionEnterTimeout={2000}
+                transitionLeaveTimeout={1000}
+                transitionAppear={true}
+                transitionAppearTimeout={1000}
+              >
                 <PopularListRender
                   popularItem={item}
                   key={key}
                   index={key + 1}
                 ></PopularListRender>
+                </ReactCSSTransitionGroup>
               );
             })
           ) : (

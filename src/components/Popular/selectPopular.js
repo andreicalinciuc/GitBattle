@@ -16,7 +16,7 @@ export default class SelectedLanguage extends React.Component {
                 key={key}
                 onClick={() => click(lang.value)}
                 className={
-                  this.props.selectItem == lang.value ? "selectedItem" : null
+                  this.props.selectItem === lang.value ? "selectedItem" : null
                 }
               />
             );
