@@ -23,7 +23,7 @@ class Popular extends PureComponent {
   activeLabel = async (lang) => {
     this.setState({
       language: lang,
-      isLoading: false, 
+      isLoading: false,
     });
 
     const response = await api.fetchRepo(lang);

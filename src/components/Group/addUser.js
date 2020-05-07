@@ -1,91 +1,113 @@
 import React, { PureComponent } from "react";
 import "../Battle/battle.css";
-import api from "../../utility/api";
 import { Tab, Tabs, Input, CircularProgress } from "@material-ui/core";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
+import api from "../../utility/api";
+import "../Group/group.css";
 import { connect } from "react-redux";
 import * as actionTypes from "../../store/actions";
 
-class SearchUser extends PureComponent {
+class AddUser extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
       repo: null,
-      score: 0,
       isLoading: true,
       inputData: {
-        formSerial: null,
         value: null,
       },
+      score: 0,
     };
   }
-
-  calculateScore(user) {
+  calculateScore = (user) => {
     var score = user.public_repos + user.followers + user.following;
     return score;
-  }
+  };
   fetchUser = async (data) => {
     if (data != null) {
       this.setState({
         isLoading: false,
       });
-      let respone = await api.fetchUser(data);
+      var respone = await api.fetchUser(data);
       let score = this.calculateScore(respone);
       this.setState({
         repo: respone,
         isLoading: true,
         score: score,
       });
-      this.props.submitUser(respone, this.state.score);
     }
   };
+
   resetUser = () => {
     this.setState({
       repo: null,
+      isLoading: true,
       inputData: {
-        formSerial: null,
         value: null,
       },
     });
   };
   render() {
-    const { formSerial } = this.props;
     return (
       <div className="user-container-search">
         {this.state.isLoading == true ? (
           this.state.repo != null ? (
-            <div>
-              {this.state.repo.message != null ? (
-                <p className="error">{this.state.repo.message}!</p>
-              ) : (
-                <div className="user-find">
-                  <img src={this.state.repo.avatar_url} width="80px"></img>
-                  <p>@{this.state.repo.login}</p>
+            this.state.repo.message != null ? (
+              <p className="error">{this.state.repo.message}!</p>
+            ) : (
+              <div className="select-team-section">
+                <ArrowBackIcon
+                  onClick={() => {
+                    this.props.addTeam(
+                      {
+                        name: this.state.repo.login,
+                        gitData: this.state.repo,
+                        score: this.state.score,
+
+                      },
+                      "left",
+                      this.state.score
+                    );
+                  }}
+                />
+                <div>
+                  <div className="user-find">
+                    <img src={this.state.repo.avatar_url} width="80px"></img>
+                    <p>@{this.state.repo.login}</p>
+                  </div>
                 </div>
-              )}
-            </div>
+                <ArrowForwardIcon
+                  onClick={() => {
+                    this.props.addTeam(
+                      {
+                        name: this.state.repo.login,
+                        gitData: this.state.repo,
+                        score: this.state.score,
+                      },
+                      "right",
+                      this.state.score
+                    );
+                  }}
+                />
+              </div>
+            )
           ) : null
         ) : (
           <CircularProgress />
         )}
         <Input
-          value={this.state.value}
           onChange={(e) => {
             this.setState({
               inputData: {
-                formSerial: formSerial,
                 value: e.target.value,
               },
             });
-            this.state.inputData.value !== null &&
-              this.props.onChangeComponentData({
-                formSerial: formSerial,
-                value: e.target.value,
-              });
           }}
-          placeholder={`User ${formSerial}`}
           type="text"
           id="name"
           inputRef={(el) => (this.name = el)}
+          placeholder="Find your player"
         />
         <Tabs value={false}>
           {this.state.repo == null ? (
@@ -102,11 +124,6 @@ class SearchUser extends PureComponent {
               label="Reset"
             />
           )}
-          <Tab
-            onClick={() => this.props.removeFormButtonClick(formSerial)}
-            label="Remove"
-            disabled={this.props.length <= 1}
-          />
         </Tabs>
       </div>
     );
@@ -115,23 +132,15 @@ class SearchUser extends PureComponent {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onChangeComponentData: (data) => {
-      dispatch({ type: actionTypes.MODIFY_CONTENT, data: data });
-    },
-    removeFormButtonClick: (formSerial) => {
+    addTeam: (user, team, score) => {
       dispatch({
-        type: actionTypes.REMOVE_FORM_CLICK,
-        removeFormSerial: formSerial,
-      });
-    },
-
-    submitUser: (user, score) => {
-      dispatch({
-        type: actionTypes.SUBMIT_FETCH_USER,
+        type: actionTypes.ADD_TEAM,
         user: user,
+        team: team,
         score: score,
       });
     },
   };
 };
-export default connect(null, mapDispatchToProps)(SearchUser);
+
+export default connect(null, mapDispatchToProps)(AddUser);

@@ -4,6 +4,7 @@ const initialState = {
   dynamicFormSerial: [("", 1), ("", 2)],
   dynamicFormData: [],
   dyanicDataFromFetch: [],
+  winnerScore: 0,
 };
 
 const reducer = (state = initialState, action) => {
@@ -82,17 +83,20 @@ const reducer = (state = initialState, action) => {
         dynamicFormSerial: [("", 1), ("", 2)].concat(),
         dynamicFormData: [].concat(),
         dyanicDataFromFetch: [].concat(),
+        winnerScore: 0,
       };
     }
 
     case actionTypes.SUBMIT_FETCH_USER: {
-      const { dyanicDataFromFetch } = state;
+      const { dyanicDataFromFetch, winnerScore } = state;
       let tempDynamicFetchUser = dyanicDataFromFetch;
+
       tempDynamicFetchUser.push(action.user);
 
       return {
         ...state,
         dyanicDataFromFetch: tempDynamicFetchUser.concat(),
+        winnerScore: action.score > winnerScore ? action.score : winnerScore,
       };
     }
 

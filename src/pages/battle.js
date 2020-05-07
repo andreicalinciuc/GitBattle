@@ -29,18 +29,19 @@ class Battle extends React.Component {
           ) : (
             <Tab onClick={() => this.props.reset()} label="Reset" />
           )}
-
-          {/* <Tab
-            onClick={() => this.props.onSaveComponentData()}
-            label="Battle"
-          /> */}
         </div>
 
         <div className="users-search-section">
           {this.props.dyanicDataFromFetch.length ===
           this.props.dynamicFormSerial.length
             ? this.props.dyanicDataFromFetch.map((item) => {
-                return <BattleResult user={item} key={item.id} />;
+                return (
+                  <BattleResult
+                    user={item}
+                    key={item.id}
+                    winnerScore={this.props.winnerScore}
+                  />
+                );
               })
             : this.props.dynamicFormSerial.length >= 1 &&
               this.props.dynamicFormSerial.map((item) => {
@@ -59,9 +60,10 @@ class Battle extends React.Component {
 }
 const mapStateToProps = (state) => {
   return {
-    dynamicFormSerial: state.dynamicFormSerial,
-    dynamicFormData: state.dynamicFormData,
-    dyanicDataFromFetch: state.dyanicDataFromFetch,
+    dynamicFormSerial: state.battle.dynamicFormSerial,
+    dynamicFormData: state.battle.dynamicFormData,
+    dyanicDataFromFetch: state.battle.dyanicDataFromFetch,
+    winnerScore: state.battle.winnerScore,
   };
 };
 
@@ -77,9 +79,6 @@ const mapDispatchToProps = (dispatch) => {
     reset: () => {
       dispatch({ type: actionTypes.RESET });
     },
-    // onSaveComponentData: async () => {
-    //   dispatch({ type: actionTypes.BAT });
-    // },
   };
 };
 
