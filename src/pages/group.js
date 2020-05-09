@@ -112,7 +112,7 @@ class Group extends React.Component {
               ) : null}
             </div>
             {this.state.fight === false ? (
-              <div class="group-battle-controler">
+              <div className="group-battle-controler">
                 <Tabs value={false}>
                   <Tab
                     label="fight"

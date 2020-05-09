@@ -7,7 +7,6 @@ import * as actionTypes from "../store/actions";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 
 class Battle extends React.Component {
- 
   render() {
     return (
       <div>
@@ -52,12 +51,11 @@ class Battle extends React.Component {
             : this.props.dynamicFormSerial.length >= 1 &&
               this.props.dynamicFormSerial.map((item) => {
                 return (
-                  
-                    <SearchUser
-                      key={item}
-                      formSerial={item}
-                      length={this.props.dynamicFormSerial.length}
-                    />
+                  <SearchUser
+                    key={item}
+                    formSerial={item}
+                    length={this.props.dynamicFormSerial.length}
+                  />
                 );
               })}
         </div>
@@ -86,7 +84,6 @@ const mapDispatchToProps = (dispatch) => {
     reset: () => {
       dispatch({ type: actionTypes.RESET });
     },
-   
   };
 };
 
