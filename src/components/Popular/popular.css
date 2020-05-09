@@ -22,18 +22,18 @@
   align-content: center;
 }
 
-.selectedItem{
-border-bottom: 2px solid red !important;
-font-weight: 600;
-transform: scale(1.05);
-color: rgb(255, 255, 255) !important;
+.selectedItem {
+  border-bottom: 2px solid red !important;
+  font-weight: 600;
+  transform: scale(1.05);
+  color: rgb(255, 255, 255) !important;
 }
 
 .popular-item a {
-  text-decoration:none; 
+  text-decoration: none;
   color: rgb(149, 165, 149);
   font-weight: 600;
 }
-.popular-item:hover{
+.popular-item:hover {
   transform: scale(1.02);
 }

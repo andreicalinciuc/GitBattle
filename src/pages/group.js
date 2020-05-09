@@ -9,11 +9,14 @@ import UserContainer from "../components/Group/userGroupContainer";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 import "../components/Layout/Layout.css";
 import { ToastContainer, toast } from "react-toastify";
+import  Statistics from '../pages/groupStatistics'
+import '../components/Layout/Layout.css';
 class Group extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       fight: false,
+      statistics:false,
       winnerScore: 0,
     };
   }
@@ -62,7 +65,7 @@ class Group extends React.Component {
     return (
       <div>
         <ToastContainer autoClose={3500} bodyClassName="dark-toast" />
-
+        {this.state.statistics===false?
         <div className="group-list-section">
           <div
             className={`group-list-container ${
@@ -131,12 +134,18 @@ class Group extends React.Component {
               </ReactCSSTransitionGroup>
             </div>
           ) : (
-            <Tab
-              label="Add new player/s"
-              onClick={() => {
-                this.setState({ fight: !this.state.fight });
-              }}
-            ></Tab>
+            <Tabs value={false}>
+              <Tab
+                label="Add new player/s"
+                onClick={() => {
+                  this.setState({ fight: !this.state.fight });
+                }}
+              ></Tab >
+
+              <Tab label="See statistics" onClick={()=>{
+                this.setState({statistics:true})
+              }}/>
+            </Tabs>
           )}
           <div
             className={`group-list-container ${
@@ -183,7 +192,9 @@ class Group extends React.Component {
               </div>
             ) : null}
           </div>
-        </div>
+        </div>:(<div className="navigationLink">
+          <Tab label='back to fight' onClick={()=>this.setState({statistics:false})}></Tab>
+          <Statistics/></div>)}
       </div>
     );
   }

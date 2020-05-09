@@ -27,6 +27,7 @@ class BattleResult extends PureComponent {
             <img src={user.avatar_url} width="80px" alt="User profile"></img>
             <p>@{user.login}</p>
             <p>Public repos: {user.public_repos}</p>
+            <p>Public gists: {user.public_gists}</p>
             <p>Followers: {user.followers}</p>
             <p>Following: {user.following}</p>
             <p>Days:{days_between(new Date(user.created_at), new Date())}</p>

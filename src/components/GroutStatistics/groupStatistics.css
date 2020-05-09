@@ -1,0 +1,25 @@
+.charts-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.chart-section {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-around;
+}
+.chart {
+  width: 95%;
+  background-color: rgb(34, 33, 33);
+  border: 1px solid white;
+  margin: 10px auto;
+  border-radius: 10px;
+}
+.chart p {
+  text-align: center;
+  color: whitesmoke;
+}

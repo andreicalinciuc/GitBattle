@@ -4,10 +4,12 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Home from "../../pages/home";
 import Battle from "../../pages/battle";
 import Group from "../../pages/group";
+import Statistics from '../../pages/groupStatistics'
 import Popular from "../../pages/popular";
 import NotReady from "../../pages/notReady"
 import "./Layout.css";
 import { Tabs, Tab } from "@material-ui/core";
+import history from '../../history'
 class Layout extends PureComponent {
   constructor(props) {
     super(props);
@@ -25,7 +27,7 @@ class Layout extends PureComponent {
     return (
       <div className="layout">
         <div className="main">
-          <Router>
+          <Router history={history}>
             {this.state.ready === true ? (
               <Tabs value={false}>
                 <Link to="/battle" className="navigationLink">
@@ -50,6 +52,9 @@ class Layout extends PureComponent {
                 </Route>
                 <Route path="/group">
                   <Group />
+                </Route>
+                <Route path="/group/statistics">
+                  <Statistics/>
                 </Route>
                 <Route path="/popular">
                   <Popular />
