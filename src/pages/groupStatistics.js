@@ -5,6 +5,8 @@ import FollowersCharts from "../components/GroutStatistics/FollowersCharts";
 import FollowingCharts from "../components/GroutStatistics/FollowingCharts";
 import PublicReposCharts from "../components/GroutStatistics/PublicReposCharts";
 import PublicGistsCharts from "../components/GroutStatistics/PublicGistsCharts";
+import DaysCharts from "../components/GroutStatistics/DaysCharts";
+
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 
 import "../components/GroutStatistics/FollowersCharts";
@@ -20,6 +22,8 @@ class Statistics extends PureComponent {
       <ReactCSSTransitionGroup
         transitionName="fade"
         transitionAppear={true}
+        transitionEnterTimeout={1000}
+        transitionLeaveTimeout={1000}
         transitionAppearTimeout={1000}
       >
         <div className="charts-container">
@@ -53,6 +57,13 @@ class Statistics extends PureComponent {
             rightListName={rightListName}
             title="Public Repos"
           ></PublicGistsCharts>
+          <DaysCharts
+            leftTeam={this.props.leftTeam}
+            rightTeam={this.props.rightTeam}
+            leftListName={leftListName}
+            rightListName={rightListName}
+            title="Public Repos"
+          ></DaysCharts>
         </div>
       </ReactCSSTransitionGroup>
     );

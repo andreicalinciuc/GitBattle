@@ -63,3 +63,17 @@
   background-color: rgb(34, 33, 33);
   font-weight: 500;
 }
+
+@media only screen and (max-width: 970px) {
+  .group-list-section{
+      flex-direction: column;
+      align-items: center;
+  }
+  .select-team-section{
+    flex-direction: column;
+  }
+
+  .group-battle-controler .MuiSvgIcon-root{
+    transform: rotate(90deg) !important;
+  }
+}

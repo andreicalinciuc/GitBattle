@@ -1,8 +1,6 @@
 import React, { PureComponent } from "react";
 import "./battle.css";
 class BattleResult extends PureComponent {
-
-
   render() {
     const { user, winnerScore } = this.props;
 
@@ -17,15 +15,26 @@ class BattleResult extends PureComponent {
     }
     var score = calculateScore(user);
     return (
-      <div className= {score === winnerScore ?"user-container-search winner":"user-container-search looser"}>
+      <div
+        className={
+          score === winnerScore
+            ? "user-container-search winner"
+            : "user-container-search looser"
+        }
+      >
         {user.message != null ? (
           <p className="error">{user.message}!</p>
         ) : (
           <div className="user-find">
-            {score === winnerScore ? <p className="winner-text">Winner</p> : null}
+            {score === winnerScore ? (
+              <p className="winner-text">Winner</p>
+            ) : null}
             <p>Score: {score}</p>
             <img src={user.avatar_url} width="80px" alt="User profile"></img>
             <p>@{user.login}</p>
+            <p>
+              Location: {user.location == null ? "Not set yet" : user.location}
+            </p>
             <p>Public repos: {user.public_repos}</p>
             <p>Public gists: {user.public_gists}</p>
             <p>Followers: {user.followers}</p>
