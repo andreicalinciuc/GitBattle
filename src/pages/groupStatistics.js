@@ -18,42 +18,42 @@ class Statistics extends PureComponent {
     });
     return (
       <ReactCSSTransitionGroup
-      transitionName="fade"
-      transitionAppear={true}
-      transitionAppearTimeout={1000}
-    >
-      <div className="charts-container">
-        <FollowersCharts
-          leftTeam={this.props.leftTeam}
-          rightTeam={this.props.rightTeam}
-          leftListName={leftListName}
-          rightListName={rightListName}
-          title=" Followers "
-        ></FollowersCharts>
+        transitionName="fade"
+        transitionAppear={true}
+        transitionAppearTimeout={1000}
+      >
+        <div className="charts-container">
+          <FollowersCharts
+            leftTeam={this.props.leftTeam}
+            rightTeam={this.props.rightTeam}
+            leftListName={leftListName}
+            rightListName={rightListName}
+            title=" Followers "
+          ></FollowersCharts>
 
-        <FollowingCharts
-          leftTeam={this.props.leftTeam}
-          rightTeam={this.props.rightTeam}
-          leftListName={leftListName}
-          rightListName={rightListName}
-          title="Following"
-        ></FollowingCharts>
+          <FollowingCharts
+            leftTeam={this.props.leftTeam}
+            rightTeam={this.props.rightTeam}
+            leftListName={leftListName}
+            rightListName={rightListName}
+            title="Following"
+          ></FollowingCharts>
 
-        <PublicReposCharts
-          leftTeam={this.props.leftTeam}
-          rightTeam={this.props.rightTeam}
-          leftListName={leftListName}
-          rightListName={rightListName}
-          title="Public Repos"
-        ></PublicReposCharts>
-        <PublicGistsCharts
-          leftTeam={this.props.leftTeam}
-          rightTeam={this.props.rightTeam}
-          leftListName={leftListName}
-          rightListName={rightListName}
-          title="Public Repos"
-        ></PublicGistsCharts>
-      </div>
+          <PublicReposCharts
+            leftTeam={this.props.leftTeam}
+            rightTeam={this.props.rightTeam}
+            leftListName={leftListName}
+            rightListName={rightListName}
+            title="Public Repos"
+          ></PublicReposCharts>
+          <PublicGistsCharts
+            leftTeam={this.props.leftTeam}
+            rightTeam={this.props.rightTeam}
+            leftListName={leftListName}
+            rightListName={rightListName}
+            title="Public Repos"
+          ></PublicGistsCharts>
+        </div>
       </ReactCSSTransitionGroup>
     );
   }

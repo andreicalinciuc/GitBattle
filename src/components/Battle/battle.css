@@ -40,6 +40,9 @@
   font-size: 30px;
 }
 
+.nav-section{
+  min-height: 54px !important;
+}
 .battle-controller button {
   border: 1px grey solid;
   margin: 5px 3px 5px;

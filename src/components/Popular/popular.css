@@ -24,8 +24,9 @@
 
 .selectedItem {
   border-bottom: 2px solid red !important;
+  
   font-weight: 600;
-  transform: scale(1.05);
+  transform: scale(1.02);
   color: rgb(255, 255, 255) !important;
 }
 

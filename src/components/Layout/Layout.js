@@ -29,7 +29,7 @@ class Layout extends PureComponent {
         <div className="main">
           <Router history={history}>
             {this.state.ready === true ? (
-              <Tabs value={false}>
+              <Tabs value={false} className="nav-section">
                 <Link to="/battle" className="navigationLink">
                   <Tab label="Battle" />
                 </Link>
