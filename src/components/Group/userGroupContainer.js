@@ -5,7 +5,6 @@ import * as actionTypes from "../../store/actions";
 import RestoreFromTrashIcon from "@material-ui/icons/RestoreFromTrash";
 class UserContainer extends PureComponent {
   render() {
-    console.log(this.props);
     return (
       <div className="user-team-container">
         <img src={this.props.imgProfile} width="35px" height="35px"></img>

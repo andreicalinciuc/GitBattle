@@ -9,7 +9,6 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.ADD_FORM: {
-      console.log("ADD_FORM");
       const { dynamicFormSerial } = state;
       let tempDynamicSerial = dynamicFormSerial;
       let lastFormSerial = tempDynamicSerial[tempDynamicSerial.length - 1] + 1;
@@ -20,7 +19,6 @@ const reducer = (state = initialState, action) => {
       };
     }
     case actionTypes.REMOVE_FORM: {
-      console.log("REMOVE_FORM");
       const { dynamicFormData, dynamicFormSerial, dyanicDataFromFetch } = state;
 
       return {
@@ -52,7 +50,6 @@ const reducer = (state = initialState, action) => {
     }
 
     case actionTypes.REMOVE_FORM_CLICK: {
-      console.log("REMOVE_FORM_CLICK");
       const { dynamicFormSerial, dynamicFormData, dyanicDataFromFetch } = state;
       let tempDynamicSerial = dynamicFormSerial;
       let tempDynamicComponentData = dynamicFormData;
@@ -88,7 +85,6 @@ const reducer = (state = initialState, action) => {
 
 
     case actionTypes.RESET: {
-      console.log("RESET");
       return {
         ...state,
         dynamicFormSerial: [("", 1), ("", 2)].concat(),
