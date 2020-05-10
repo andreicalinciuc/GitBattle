@@ -18,13 +18,14 @@ Ca puncte forte pe langa cele din cerinta standard:
 
 
 To do:
-  -drag and drop intre cele 2 grupuri
-  
-  -cautat o metoda de a evita cors
-  
-  -history meciuri
-  
-  -web sockets
+
+    -drag and drop intre cele 2 grupuri
+
+    -cautat o metoda de a evita cors
+
+    -history meciuri
+
+    -web sockets
   
   
   
