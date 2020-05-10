@@ -23,6 +23,7 @@ class Popular extends PureComponent {
     this.setState({ isLoading: true, data: response });
   };
   activeLabel = async (lang) => {
+    console.log(lang);
     this.setState({
       language: lang,
       isLoading: false,
@@ -37,7 +38,7 @@ class Popular extends PureComponent {
       <div>
         <SelectLanguage
           click={this.activeLabel}
-          selectItem={this.state.language.toLowerCase()}
+          selectItem={this.state.language!=""?this.state.language.toLowerCase():null}
         ></SelectLanguage>
 
         <div className="popular-container">
@@ -45,17 +46,17 @@ class Popular extends PureComponent {
             this.state.data.map((item, key) => {
               return (
                 <ReactCSSTransitionGroup
-                transitionName="fade"
-                transitionEnterTimeout={2000}
-                transitionLeaveTimeout={1000}
-                transitionAppear={true}
-                transitionAppearTimeout={1000}
-              >
-                <PopularListRender
-                  popularItem={item}
-                  key={key}
-                  index={key + 1}
-                ></PopularListRender>
+                  transitionName="fade"
+                  transitionEnterTimeout={2000}
+                  transitionLeaveTimeout={1000}
+                  transitionAppear={true}
+                  transitionAppearTimeout={1000}
+                >
+                  <PopularListRender
+                    popularItem={item}
+                    key={key}
+                    index={key + 1}
+                  ></PopularListRender>
                 </ReactCSSTransitionGroup>
               );
             })

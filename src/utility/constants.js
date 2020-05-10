@@ -33,7 +33,7 @@ export const languages = [
   {
     label: "c++",
     value: "cpp",
-  },
+  }
 ];
 
 export default languages;
