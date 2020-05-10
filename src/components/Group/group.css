@@ -63,6 +63,13 @@
   background-color: rgb(34, 33, 33);
   font-weight: 500;
 }
+.fight-result-controler{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15px;
+
+}
 
 @media only screen and (max-width: 970px) {
   .group-list-section{

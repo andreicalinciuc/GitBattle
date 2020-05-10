@@ -1,10 +1,11 @@
 import React from "react";
 import SearchUser from "../components/Battle/selectUser";
-import { Tab, Tabs } from "@material-ui/core";
+import { Tab, Tabs,Tooltip } from "@material-ui/core";
 import BattleResult from "../components/Battle/battleListItem";
 import { connect } from "react-redux";
 import * as actionTypes from "../store/actions";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
+import InfoIcon from "@material-ui/icons/Info";
 
 class Battle extends React.Component {
   render() {
@@ -31,7 +32,12 @@ class Battle extends React.Component {
                 />
               </Tabs>
             ) : (
+              <div className="fight-result-controler">
               <Tab onClick={() => this.props.reset()} label="Reset" />
+              <Tooltip title="Score: Public repo + Followers + Following" className="score-info">
+                  <InfoIcon />
+                </Tooltip>
+              </div>
             )}
           </ReactCSSTransitionGroup>
         </div>

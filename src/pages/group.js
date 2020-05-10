@@ -1,7 +1,7 @@
 import React from "react";
 import api from "../utility/api";
 import "../components/Group/group.css";
-import { Tab, Tabs } from "@material-ui/core";
+import { Tab, Tabs, Tooltip } from "@material-ui/core";
 import AddUser from "../components/Group/addUser";
 import * as actionTypes from "../store/actions";
 import { connect } from "react-redux";
@@ -11,6 +11,7 @@ import "../components/Layout/Layout.css";
 import { ToastContainer, toast } from "react-toastify";
 import Statistics from "../pages/groupStatistics";
 import "../components/Layout/Layout.css";
+import InfoIcon from "@material-ui/icons/Info";
 class Group extends React.Component {
   constructor(props) {
     super(props);
@@ -134,21 +135,26 @@ class Group extends React.Component {
                 </ReactCSSTransitionGroup>
               </div>
             ) : (
-              <Tabs value={false}>
-                <Tab
-                  label="Add new player/s"
-                  onClick={() => {
-                    this.setState({ fight: !this.state.fight });
-                  }}
-                ></Tab>
+              <div className="fight-result-controler">
+                <Tabs value={false}>
+                  <Tab
+                    label="Add new player/s"
+                    onClick={() => {
+                      this.setState({ fight: !this.state.fight });
+                    }}
+                  ></Tab>
 
-                <Tab
-                  label="See statistics"
-                  onClick={() => {
-                    this.setState({ statistics: true });
-                  }}
-                />
-              </Tabs>
+                  <Tab
+                    label="See statistics"
+                    onClick={() => {
+                      this.setState({ statistics: true });
+                    }}
+                  />
+                </Tabs>
+                <Tooltip title="Score: Public repo + Followers + Following" className="score-info">
+                  <InfoIcon />
+                </Tooltip>
+              </div>
             )}
             <div
               className={`group-list-container ${

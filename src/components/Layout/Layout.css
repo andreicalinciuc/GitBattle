@@ -40,6 +40,11 @@
   display: block;
 }
 
+.score-info{
+  text-align: center;
+  color: white;
+}
+
 .slideleft-enter {
   transform: translateX(-100%);
 }
