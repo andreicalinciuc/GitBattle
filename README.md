@@ -1,1 +1,1 @@
-![Diagram](https://ibb.co/xg7Cnx2)
+[Diagram](https://ibb.co/xg7Cnx2)
