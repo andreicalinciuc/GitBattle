@@ -1,3 +1,3 @@
-[Diagram](https://ibb.co/xg7Cnx2)
+[Link to diagram](https://ibb.co/xg7Cnx2)
 
-![Diagram](Git Battle diagram.png)
+![Diagram](gitBattleDiagram.png)
