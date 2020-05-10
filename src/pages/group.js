@@ -197,7 +197,7 @@ class Group extends React.Component {
             </div>
           </div>
         ) : (
-          <div className="navigationLink">
+          <div className="navigationLink group-navigation">
             <Tab
               label="back to fight"
               onClick={() => this.setState({ statistics: false })}
