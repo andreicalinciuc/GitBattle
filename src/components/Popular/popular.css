@@ -38,3 +38,13 @@
 .popular-item:hover {
   transform: scale(1.02);
 }
+
+.popular-input{
+  margin-left: 5px;
+  margin-top: 5px;
+  border: 1px grey solid;
+  padding-left: 10px;
+  height: 48px;
+  min-width: 250px;
+  color: rgb(240, 233, 233) !important;
+}

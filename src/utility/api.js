@@ -3,8 +3,27 @@ import { toast } from "react-toastify";
 
 async function fetchUser(username) {
   return await fetch(
-    "https://api.github.com/users/" + username
+    "https://api.github.com/users/" + username,{headers:{
+      "Access-Control-Allow-Origin":"*",
+
+    }}
   ).then((response) => response.json());
+}
+
+async function fetchRepos(username) {
+  return await fetch(
+    "https://api.github.com/users/" + username + "/repos"
+  ).then((response) => response.json());
+}
+
+async function fetchStatsRepo(username, repo) {
+  return await fetch(
+    "https://api.github.com/repos/" +
+      username +
+      "/" +
+      repo +
+      "/stats/code_frequency"
+  ).then((response) => response);
 }
 
 function getListByID(id) {
@@ -25,7 +44,7 @@ function saveList(id, data, team) {
       toast.success(`Succes ${team}`.toUpperCase(), {
         autoClose: 3000,
         className: "dark-toast",
-        position:toast.POSITION.BOTTOM_RIGHT
+        position: toast.POSITION.BOTTOM_RIGHT,
       });
     })
     .catch((error) => {
@@ -41,8 +60,15 @@ export default {
       return await fetchUser(user.value);
     });
   },
-  fetchUser: (user) => {
-    return fetchUser(user);
+  fetchUser: async (user) => {
+    {
+      const userRepo = fetchUser(user);
+      // const repos = await fetchRepos(user);
+      // const stats = repos.map(async (item) => {
+      //   return await fetchStatsRepo(user, item.name);
+      // });
+      return userRepo;
+    }
   },
   getListByID: (id) => {
     return getListByID(id);
