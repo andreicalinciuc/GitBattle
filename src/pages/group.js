@@ -8,7 +8,6 @@ import { connect } from "react-redux";
 import UserContainer from "../components/Group/userGroupContainer";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 import "../components/Layout/Layout.css";
-import { ToastContainer, toast } from "react-toastify";
 import Statistics from "../pages/groupStatistics";
 import "../components/Layout/Layout.css";
 import InfoIcon from "@material-ui/icons/Info";
@@ -65,7 +64,6 @@ class Group extends React.Component {
   render() {
     return (
       <div>
-        <ToastContainer autoClose={3500} bodyClassName="dark-toast" />
         {this.state.statistics === false ? (
           <div className="group-list-section">
             <div
@@ -151,7 +149,10 @@ class Group extends React.Component {
                     }}
                   />
                 </Tabs>
-                <Tooltip title="Score: Public repo + Followers + Following" className="score-info">
+                <Tooltip
+                  title="Score: Public repo + Followers + Following"
+                  className="score-info"
+                >
                   <InfoIcon />
                 </Tooltip>
               </div>

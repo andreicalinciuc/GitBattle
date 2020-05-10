@@ -1,32 +1,51 @@
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
-
+const API = "https://api.github.com";
 async function fetchUser(username) {
-  return await fetch(
-    "https://api.github.com/users/" + username
-  ).then((response) => response.json());
+  return await fetch(`${API}/users/${username}`)
+    .then((response) => response.json())
+    .catch((error) => {
+      toast.error(`Error: ${error} `.toUpperCase(), {
+        autoClose: 3000,
+        className: "dark-toast",
+      });
+    });
 }
 
 async function fetchRepos(username) {
-  return await fetch(
-    "https://api.github.com/users/" + username + "/repos"
-  ).then((response) => response.json());
+  return await fetch(`${API}/users/${username}/repos`, {
+    mode: "no-cors",
+  }).then((response) =>
+    response.json().catch((error) => {
+      toast.error(`Error: ${error} `.toUpperCase(), {
+        autoClose: 3000,
+        className: "dark-toast",
+      });
+    })
+  );
 }
 
 async function fetchStatsRepo(username, repo) {
-  return await fetch(
-    "https://api.github.com/repos/" +
-      username +
-      "/" +
-      repo +
-      "/stats/code_frequency"
-  ).then((response) => response);
+  return await fetch(`  ${API}/repos/${username}/${repo}/stats/code_frequency`)
+    .then((response) => response)
+    .catch((error) => {
+      toast.error(`Error: ${error} `.toUpperCase(), {
+        autoClose: 3000,
+        className: "dark-toast",
+      });
+    });
 }
 
 function getListByID(id) {
   return fetch("https://jsonblob.com/api/jsonBlob/" + id)
     .then((response) => response.json())
-    .then((data) => data["users"]);
+    .then((data) => data["users"])
+    .catch((error) => {
+      toast.error(`Error: ${error} `.toUpperCase(), {
+        autoClose: 3000,
+        className: "dark-toast",
+      });
+    });
 }
 function saveList(id, data, team) {
   return fetch("https://jsonblob.com/api/jsonBlob/" + id, {
@@ -42,12 +61,6 @@ function saveList(id, data, team) {
         autoClose: 3000,
         className: "dark-toast",
         position: toast.POSITION.BOTTOM_RIGHT,
-      });
-    })
-    .catch((error) => {
-      toast.error(`Error ${team}`.toUpperCase(), {
-        autoClose: 3000,
-        className: "dark-toast",
       });
     });
 }
@@ -76,11 +89,15 @@ export default {
 
   fetchRepo: function (language) {
     return fetch(
-      "https://api.github.com/search/repositories?q=stars:>5+language:" +
-        language +
-        "&sort=stars&order=desc&type=Repositories"
+      `${API}/search/repositories?q=stars:>5+language:${language}&sort=stars&order=desc&type=Repositories`
     )
       .then((response) => response.json())
-      .then((data) => data["items"]);
+      .then((data) => data["items"])
+      .catch((error) => {
+        toast.error(`Error: ${error} `.toUpperCase(), {
+          autoClose: 3000,
+          className: "dark-toast",
+        });
+      });
   },
 };

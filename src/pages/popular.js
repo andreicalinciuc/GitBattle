@@ -30,6 +30,7 @@ class Popular extends PureComponent {
     });
 
     const response = await api.fetchRepo(lang);
+    if(response!==undefined)
     this.setState({ isLoading: true, data: response });
   };
 

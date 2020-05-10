@@ -83,7 +83,6 @@ const reducer = (state = initialState, action) => {
       };
     }
 
-
     case actionTypes.RESET: {
       return {
         ...state,

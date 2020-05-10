@@ -27,6 +27,7 @@ class Statistics extends PureComponent {
         transitionAppearTimeout={1000}
       >
         <div className="charts-container">
+          {/* initial am plecat cu ideea sa le fac pe toate diferite,de astea sunt 4 componente nu 1,insa tot astea veticale arata mai bine  */}
           <FollowersCharts
             leftTeam={this.props.leftTeam}
             rightTeam={this.props.rightTeam}

@@ -4,12 +4,15 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Home from "../../pages/home";
 import Battle from "../../pages/battle";
 import Group from "../../pages/group";
-import Statistics from '../../pages/groupStatistics'
+import Statistics from "../../pages/groupStatistics";
 import Popular from "../../pages/popular";
-import NotReady from "../../pages/notReady"
+import NotReady from "../../pages/notReady";
 import "./Layout.css";
 import { Tabs, Tab } from "@material-ui/core";
-import history from '../../history'
+import history from "../../history";
+import { ToastContainer, toast } from "react-toastify";
+import ErrorBoundary from "../../utility/ErrorBoundary";
+
 class Layout extends PureComponent {
   constructor(props) {
     super(props);
@@ -43,24 +46,38 @@ class Layout extends PureComponent {
             ) : null}
 
             <div className="content">
+              <ToastContainer autoClose={3500} bodyClassName="dark-toast" />
+
               <Switch>
                 <Route exact path="/">
-                  <Home click={this.readyToFight} />
+                  <ErrorBoundary>
+                    <Home click={this.readyToFight} />
+                  </ErrorBoundary>
                 </Route>
                 <Route path="/battle">
-                  <Battle />
+                  <ErrorBoundary>
+                    <Battle />
+                  </ErrorBoundary>
                 </Route>
                 <Route path="/group">
-                  <Group />
+                  <ErrorBoundary>
+                    <Group />
+                  </ErrorBoundary>
                 </Route>
                 <Route path="/group/statistics">
-                  <Statistics/>
+                  <ErrorBoundary>
+                    <Statistics />
+                  </ErrorBoundary>
                 </Route>
                 <Route path="/popular">
-                  <Popular />
+                  <ErrorBoundary>
+                    <Popular />
+                  </ErrorBoundary>
                 </Route>
                 <Route path="/notReady">
-                  <NotReady />
+                  <ErrorBoundary>
+                    <NotReady />
+                  </ErrorBoundary>
                 </Route>
               </Switch>
             </div>

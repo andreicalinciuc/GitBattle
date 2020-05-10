@@ -45,6 +45,11 @@
   color: white;
 }
 
+.dark-toast{
+  background-color: rgb(34, 33, 33);
+  font-weight: 500;
+}
+
 .slideleft-enter {
   transform: translateX(-100%);
 }

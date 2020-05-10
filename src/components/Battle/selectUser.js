@@ -29,6 +29,7 @@ class SearchUser extends PureComponent {
         isLoading: false,
       });
       let respone = await api.fetchUser(data);
+     if(respone!==undefined){
       let score = this.calculateScore(respone);
       this.setState({
         repo: respone,
@@ -37,6 +38,8 @@ class SearchUser extends PureComponent {
       });
       this.props.submitUser(respone, this.state.score);
     }
+     }
+      
   };
   resetUser = () => {
     this.setState({

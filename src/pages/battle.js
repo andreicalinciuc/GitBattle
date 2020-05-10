@@ -1,6 +1,6 @@
 import React from "react";
 import SearchUser from "../components/Battle/selectUser";
-import { Tab, Tabs,Tooltip } from "@material-ui/core";
+import { Tab, Tabs, Tooltip } from "@material-ui/core";
 import BattleResult from "../components/Battle/battleListItem";
 import { connect } from "react-redux";
 import * as actionTypes from "../store/actions";
@@ -33,8 +33,11 @@ class Battle extends React.Component {
               </Tabs>
             ) : (
               <div className="fight-result-controler">
-              <Tab onClick={() => this.props.reset()} label="Reset" />
-              <Tooltip title="Score: Public repo + Followers + Following" className="score-info">
+                <Tab onClick={() => this.props.reset()} label="Reset" />
+                <Tooltip
+                  title="Score: Public repo + Followers + Following"
+                  className="score-info"
+                >
                   <InfoIcon />
                 </Tooltip>
               </div>

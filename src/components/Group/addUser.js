@@ -30,12 +30,14 @@ class AddUser extends PureComponent {
         isLoading: false,
       });
       var respone = await api.fetchUser(data);
-      let score = this.calculateScore(respone);
-      this.setState({
-        repo: respone,
-        isLoading: true,
-        score: score,
-      });
+      if (respone !== undefined) {
+        let score = this.calculateScore(respone);
+        this.setState({
+          repo: respone,
+          isLoading: true,
+          score: score,
+        });
+      }
     }
   };
 
