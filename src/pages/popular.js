@@ -38,7 +38,9 @@ class Popular extends PureComponent {
       <div>
         <SelectLanguage
           click={this.activeLabel}
-          selectItem={this.state.language!=""?this.state.language.toLowerCase():null}
+          selectItem={
+            this.state.language != "" ? this.state.language.toLowerCase() : null
+          }
         ></SelectLanguage>
 
         <div className="popular-container">

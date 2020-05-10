@@ -62,7 +62,7 @@ class Statistics extends PureComponent {
             rightTeam={this.props.rightTeam}
             leftListName={leftListName}
             rightListName={rightListName}
-            title="Public Repos"
+            title="Days"
           ></DaysCharts>
         </div>
       </ReactCSSTransitionGroup>

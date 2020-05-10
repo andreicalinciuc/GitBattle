@@ -3,10 +3,7 @@ import { toast } from "react-toastify";
 
 async function fetchUser(username) {
   return await fetch(
-    "https://api.github.com/users/" + username,{headers:{
-      "Access-Control-Allow-Origin":"*",
-
-    }}
+    "https://api.github.com/users/" + username
   ).then((response) => response.json());
 }
 

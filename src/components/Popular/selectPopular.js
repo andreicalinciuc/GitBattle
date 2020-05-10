@@ -5,11 +5,6 @@ import "./popular.css";
 import { debounce } from "debounce";
 
 export default class SelectedLanguage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { name: " " };
-    this.timeout = null;
-  }
   onChangeSearchInput = (evt) => {
     this.debouncedSearch(evt.target.value);
   };
