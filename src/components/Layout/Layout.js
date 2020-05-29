@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link, HashRouter } from "react-router-dom";
 
 import Home from "../../pages/home";
 import Battle from "../../pages/battle";
@@ -30,7 +30,7 @@ class Layout extends PureComponent {
     return (
       <div className="layout">
         <div className="main">
-          <Router history={history}>
+          <HashRouter history={history}>
             {this.state.ready === true ? (
               <Tabs value={false} className="nav-section">
                 <Link to="/battle" className="navigationLink">
@@ -81,7 +81,7 @@ class Layout extends PureComponent {
                 </Route>
               </Switch>
             </div>
-          </Router>
+          </HashRouter>
         </div>
       </div>
     );
