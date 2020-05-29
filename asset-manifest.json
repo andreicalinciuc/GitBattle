@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/GitBattle/static/css/main.f3017e4b.chunk.css",
+    "main.js": "/GitBattle/static/js/main.a40882e7.chunk.js",
+    "main.js.map": "/GitBattle/static/js/main.a40882e7.chunk.js.map",
+    "runtime-main.js": "/GitBattle/static/js/runtime-main.f9696880.js",
+    "runtime-main.js.map": "/GitBattle/static/js/runtime-main.f9696880.js.map",
+    "static/css/2.34d4290a.chunk.css": "/GitBattle/static/css/2.34d4290a.chunk.css",
+    "static/js/2.f4a14edb.chunk.js": "/GitBattle/static/js/2.f4a14edb.chunk.js",
+    "static/js/2.f4a14edb.chunk.js.map": "/GitBattle/static/js/2.f4a14edb.chunk.js.map",
+    "index.html": "/GitBattle/index.html",
+    "precache-manifest.4dd97a3bfd8b2c0a66412bbbd52a0ef7.js": "/GitBattle/precache-manifest.4dd97a3bfd8b2c0a66412bbbd52a0ef7.js",
+    "service-worker.js": "/GitBattle/service-worker.js",
+    "static/css/2.34d4290a.chunk.css.map": "/GitBattle/static/css/2.34d4290a.chunk.css.map",
+    "static/css/main.f3017e4b.chunk.css.map": "/GitBattle/static/css/main.f3017e4b.chunk.css.map",
+    "static/js/2.f4a14edb.chunk.js.LICENSE.txt": "/GitBattle/static/js/2.f4a14edb.chunk.js.LICENSE.txt",
+    "static/media/gitBattle.png": "/GitBattle/static/media/gitBattle.60dfa264.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f9696880.js",
+    "static/css/2.34d4290a.chunk.css",
+    "static/js/2.f4a14edb.chunk.js",
+    "static/css/main.f3017e4b.chunk.css",
+    "static/js/main.a40882e7.chunk.js"
+  ]
+}
